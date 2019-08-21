@@ -1,0 +1,5 @@
+## list all the databases
+SELECT name FROM master.dbo.sysdatabases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb');
+
+## save db
+backup database [test_gopimn] to disk='db.bak'
