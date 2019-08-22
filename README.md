@@ -1,5 +1,7 @@
 # GVEMU4000!!!
+
 (GE-VE-MU 4 triple o')
+
 This project aims to generate a replica of the queclink GV300w. The idea is to use a [BeagleBone Black](https://beagleboard.org/black) to get info from the 
 telemetry devices, connect a GNSS and a cellular antenna like the picture:
 
