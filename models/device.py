@@ -2,11 +2,12 @@
 
 from utils.utils import perpetualTimer as timer
 from time import ctime
-
+import gps_get
 class device(object):
     
     def gtfri_method(self,test_var = None):
         print("gtfri issued\n")
+        
         # print("Message content:\n")
         # gtfri_str = ""
         # # Header
