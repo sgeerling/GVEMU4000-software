@@ -7,7 +7,7 @@ from gps import *
 from time import *
 import time
 import threading
-from models.device import device as dev
+from ./models.device import device as dev
 gpsd = None #seting the global variable
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
