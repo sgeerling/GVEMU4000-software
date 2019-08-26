@@ -2,6 +2,7 @@
 
 from utils.utils import perpetualTimer as timer
 from time import ctime
+from gps_dev import gpsd, imei
 imei = ""
 gpsd = ""
 class device(object):
