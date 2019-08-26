@@ -28,6 +28,7 @@ def main():
     gvemu.start()
     print("6\n")
     gpsp.run()
+    print("6\n")
     print("threads started\n")
     print(share.imei)
     while True:
