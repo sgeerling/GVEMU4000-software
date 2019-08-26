@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from utils.utils import perpetualTimer as timer
-from time import ctime
 from datetime import datetime
 import utils.share as share
 
@@ -39,7 +38,7 @@ class device(object):
         # Latitude
         gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")
         # GNSS UTC time
-        print(datetime.now().strftime("%Y%m%d%H%M%S"))
+        gtfri_str += str((datetime.now().strftime("%Y%m%d%H%M%S")))
         print(gtfri_str)
         
     def gtinf_method(self,test_var = None): 
@@ -47,7 +46,7 @@ class device(object):
         
     def __init__(self,params):
         self.params = params
-        self.born_date = ctime()
+        self.born_date = str((datetime.now().strftime("%Y%m%d%H%M%S")))
         if 'period_gtfri' in params.keys():
             self.timer_gtfri = timer(params['period_gtfri'],self.gtfri_method)
         if 'period_gtinf' in params.keys():
