@@ -22,8 +22,11 @@ def main():
   gpsp = gps.GpsPoller()
   print("2\n")
   try:
+    print("4\n")
     gvemu = dev(params)
+    print("5\n")
     gvemu.start()
+    print("6\n")
     gpsp.run()
     print("threads started\n")
     print(share.imei)
