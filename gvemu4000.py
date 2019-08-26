@@ -24,7 +24,7 @@ def main():
     gvemu.start()
     print("threads started!!!!!!!!!!!!\n")
     while True:
-      if share.to_server != None:
+      if share.to_server:
         print("server queue not empty!")
         str_to_server = share.to_server.popleft()
         print(str_to_server)
