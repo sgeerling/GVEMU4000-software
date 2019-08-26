@@ -8,12 +8,14 @@ from time import *
 import time
 import threading
 from models.device import device as dev
-gpsd = None #seting the global variable
-# these parameters are globals for now.
-# when one of those is None, theres  no excecution of the timer thread,
-params = {}
-params['period_gtfri'] = 10
-params['period_gtinf'] = 5
+
+def get_imei():
+  raw =os.popen("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1").read()
+  raw = str(raw)
+  aux1=raw.split(": ")
+  aux2=aux1[1].split("^")
+  imei=aux2[0]
+  return(imei)
 
 class GpsPoller(threading.Thread):
   def __init__(self):
@@ -29,6 +31,16 @@ class GpsPoller(threading.Thread):
       gpsd.next() #this will continue to loop and grab EACH set of gpsd info to clear the buffer
 
 
+      
+gpsd = None #seting the global variable
+# these parameters are globals for now.
+# when one of those is None, theres  no excecution of the timer thread,
+params = {}
+params['period_gtfri'] = 10
+params['period_gtinf'] = 5
+imei = get_imei()
+
+
 def main():
   gvemu = dev(params)
   gvemu.start()
@@ -38,12 +50,7 @@ def main():
     gpsp.start() # start it up
     while True:
       print ("latitude  " +str(gpsd.fix.latitude))
-      raw =os.popen("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1").read()
-      raw = str(raw)
-      aux1=raw.split(": ")
-      aux2=aux1[1].split("^")
-      imei=aux2[0]
-      print(imei)
+      print (imei)
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
