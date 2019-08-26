@@ -9,7 +9,7 @@ import utils.share as share
 import utils.utils as utils
 from models.queue import Queue
 from datetime import datetime
-      
+import socket
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
