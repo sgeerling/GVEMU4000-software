@@ -8,7 +8,7 @@ class device(object):
     
     def gtfri_method(self,test_var = None):
         print("gtfri issued\n")
-        
+        now = datetime.now()
         print("Message content:\n")
         gtfri_str = ""
         # Header
@@ -38,7 +38,38 @@ class device(object):
         # Latitude
         gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")
         # GNSS UTC time
-        gtfri_str += str((datetime.now().strftime("%Y%m%d%H%M%S")))
+        gtfri_str += str((now.strftime("%Y%m%d%H%M%S")))
+        # MCC
+        gtfri_str += "0730,"
+        # MNC
+        gtfri_str += "0001,"
+        # LAC
+        gtfri_str += "3536,"
+        # CELL ID
+        gtfri_str += "52FB390,"
+        # res
+        gtfri_str += "00,"
+        # mileage
+        gtfri_str += "104746.0,"
+        # Hour meter count
+        gtfri_str += ","
+        # AI 1
+        gtfri_str += ","
+        # AI 2
+        gtfri_str += ","
+        # Batt %
+        gtfri_str += "89,"
+        # Dev status
+        gtfri_str += "220110,"
+        # Res
+        gtfri_str += ","
+        # Res
+        gtfri_str += ","
+        # Res
+        gtfri_str += ","
+        # The following params are going to be added when sending the frame
+        # Send time
+        # Footer
         print(gtfri_str)
         
     def gtinf_method(self,test_var = None): 
