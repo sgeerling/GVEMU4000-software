@@ -5,8 +5,8 @@
 import time
 from models.device import device as dev
 from models.gps_get import gpsd, GpsPoller
-from utils.utils import imei
-
+import utils.share.imei as imei
+from utils.utils as get_imei
 
       
 # these parameters are globals for now.
@@ -16,16 +16,13 @@ params['period_gtfri'] = 1
 #params['period_gtinf'] = 
 
 def main():
-
-  gpsp = GpsPoller() # create the thread
+  get_imei()
   try:
-    gpsp.start() # start it up
     gvemu = dev(params)
     gvemu.start()
     print("threads started\n")
     print(imei)
     while True:
-      print ("latitude  " +str(gpsd.fix.latitude))
       print (imei)
       time.sleep(5)
       
