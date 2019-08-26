@@ -7,7 +7,7 @@ import utils.share as share
 class device(object):
     
     def gtfri_method(self,test_var = None):
-        print("gtfri issued\n")
+        print("\n\ngtfri issued\n")
         now = datetime.now()
         print("Message content:\n")
         gtfri_str = ""
@@ -70,7 +70,7 @@ class device(object):
         # The following params are going to be added when sending the frame
         # Send time
         # Footer
-        print(gtfri_str)
+        share.to_server.append(gtfri_str)
         
     def gtinf_method(self,test_var = None): 
         print("gtinf into queue\n")

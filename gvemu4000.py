@@ -12,7 +12,7 @@ import utils.utils as utils
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
-params['period_gtfri'] = 1
+params['period_gtfri'] = 2
 #params['period_gtinf'] = 
 
 def main():
@@ -24,8 +24,12 @@ def main():
     gvemu.start()
     print("threads started!!!!!!!!!!!!\n")
     while True:
-      print ("Im alive")
-      time.sleep(5)
+      if share.to_server != None:
+        print("server queue not empty!")
+        str_to_server = share.to_server.popleft()
+        print(str_to_server)
+      print ("\n\nIm alive\n")
+      time.sleep(1)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print ("\nKilling Thread...")
