@@ -6,7 +6,7 @@ import time
 from models.device import device as dev
 from models.gps_get import gpsd, GpsPoller
 import utils.share.imei as imei
-from utils.utils.get_imei as get_imei
+import utils.utils.get_imei as get_imei
 
       
 # these parameters are globals for now.
