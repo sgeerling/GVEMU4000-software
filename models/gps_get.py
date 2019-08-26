@@ -9,7 +9,6 @@ class GpsPoller(threading.Thread):
     print("00\n")
     threading.Thread.__init__(self)
     print("01\n")
-    #global share.gpsd #bring it in scope
     share.gpsd = gps(mode=WATCH_ENABLE) #starting the stream of info
     print("02\n")
     self.current_value = None
@@ -18,7 +17,6 @@ class GpsPoller(threading.Thread):
     print("04\n")
     
   def run(self):
-    #global gpsd
     print("06\n")
     while self.running:
         print("07\n")
