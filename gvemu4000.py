@@ -14,8 +14,6 @@ import socket
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
 params['period_gtfri'] = 2
-params['alert_amqp_url'] = "amqp://tester:copilotoTester01000@10.1.1.55:5672/copiloto"
-params['alert_queue_name'] = "test"
 #params['period_gtinf'] = 
 
 def main():
@@ -33,6 +31,8 @@ def main():
         s.connect(("190.216.145.154", 61000))
         while share.to_server:
           str_to_server = share.to_server.popleft()
+          str_to_server += str((now.strftime("%Y%m%d%H%M%S")))
+          str_to_server += ",FFFF$"
           print(str_to_server)
           s.sendall(str_to_server.encode())
           data = s.recv(1024)
