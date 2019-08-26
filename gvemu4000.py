@@ -16,13 +16,14 @@ params['period_gtfri'] = 1
 #params['period_gtinf'] = 
 
 def main():
-  gvemu = dev(params)
-  gvemu.start()
-  print("threads started\n")
-  print(imei)
+
   gpsp = GpsPoller() # create the thread
   try:
     gpsp.start() # start it up
+    gvemu = dev(params)
+    gvemu.start()
+    print("threads started\n")
+    print(imei)
     while True:
       print ("latitude  " +str(gpsd.fix.latitude))
       print (imei)
