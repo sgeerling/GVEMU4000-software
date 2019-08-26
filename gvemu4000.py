@@ -36,8 +36,8 @@ gpsd = None #seting the global variable
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
-params['period_gtfri'] = 10
-params['period_gtinf'] = 5
+params['period_gtfri'] = 3
+#params['period_gtinf'] = 
 imei = get_imei()
 
 
@@ -64,19 +64,3 @@ if __name__== "__main__":
   main()
 
 
-  # 1) revisar los gps_event_measurent Ningun paquete raro se ha encontrado
-  # 2) LOGS        Los logs no muestran entradas con la imei del camión de prueba.
-  # 3) Drivetech
-
-
-# aaguilaru
-# kaufmann01
-
-# https://vpn.kaufmann.cl 443
-
-# BD 10.1.1.23
-# copiloto-dev 1433
-
-# user dev-r
-# pass think_pad.#82
-	
