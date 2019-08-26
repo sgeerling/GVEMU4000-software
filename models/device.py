@@ -2,6 +2,7 @@
 
 from utils.utils import perpetualTimer as timer
 from time import ctime
+from datetime import datetime
 import utils.share as share
 
 class device(object):
@@ -38,7 +39,7 @@ class device(object):
         # Latitude
         gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")
         # GNSS UTC time
-        print(ctime())
+        print(datetime.now().strftime("%Y%m%d%H%M%S"))
         print(gtfri_str)
         
     def gtinf_method(self,test_var = None): 
