@@ -39,7 +39,6 @@ def main():
     while True:
       print ("latitude  " +str(gpsd.fix.latitude))
       raw =os.popen("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1")
-      raw.split(': ')
       print(raw)
       time.sleep(5)
       
