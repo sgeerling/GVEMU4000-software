@@ -19,7 +19,7 @@ def main():
   print("0\n")
   utils.get_imei()
   print("1\n")
-  gpsp = gps.GpsPoller()
+  #gpsp = gps.GpsPoller()
   print("2\n")
   try:
     print("4\n")
@@ -27,7 +27,7 @@ def main():
     print("5\n")
     gvemu.start()
     print("6\n")
-    gpsp.run()
+    #gpsp.run()
     print("6\n")
     print("threads started!!!!!!!!!!!!\n")
     print(share.imei)
@@ -35,7 +35,7 @@ def main():
     while True:
       print (share.imei)
       print("what?\n")
-      print (share.gpsd.fix.latitude)
+      #print (share.gpsd.fix.latitude)
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
