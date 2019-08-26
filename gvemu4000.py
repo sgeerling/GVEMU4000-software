@@ -35,8 +35,8 @@ def main():
   print("threads started\n") 
   gpsp = GpsPoller() # create the thread
   try:
+    gpsp.start() # start it up
     while True:
-      gpsp.start() # start it up
       print ("latitude  " +str(gpsd.fix.latitude))
       time.sleep(5)
       
