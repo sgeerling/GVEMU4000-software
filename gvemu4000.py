@@ -26,10 +26,10 @@ def main():
     gvemu = dev(params)
     gvemu.start()
     print("threads started!!!!!!!!!!!!\n")
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     while True:
       if share.to_server:
         print("server queue not empty!")
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect(("190.216.145.154", 61000))
         while share.to_server:
           str_to_server = share.to_server.popleft()
