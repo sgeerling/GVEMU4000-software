@@ -29,10 +29,12 @@ def main():
     print("6\n")
     gpsp.run()
     print("6\n")
-    print("threads started\n")
+    print("threads started!!!!!!!!!!!!\n")
     print(share.imei)
+    print("7?\n")
     while True:
       print (share.imei)
+      print("what?\n")
       print (share.gpsd.fix.latitude)
       time.sleep(5)
       
