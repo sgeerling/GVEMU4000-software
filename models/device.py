@@ -10,33 +10,33 @@ class device(object):
         print("Message content:\n")
         gtfri_str = ""
         # Header
-        gtfri_str.append("+RESP:GTFRI,")
+        gtfri_str += "+RESP:GTFRI,"
         # Protocol ver
-        gtfri_str.append("270601,")
+        gtfri_str += "270601,"
         # IMEI
-        gtfri_str.append(str(imei)+",")
+        gtfri_str += str(str(imei)+",")
         # Dev name
-        gtfri_str.append(",")
+        gtfri_str += ","
         # External Vcc
-        gtfri_str.append(",")
+        gtfri_str += ","
         # Report ID
-        gtfri_str.append("10,")
+        gtfri_str += "10,"
         # Number
-        gtfri_str.append("1,")
+        gtfri_str += "1,"
         # GNSS accuracy
-        gtfri_str.append(",")
+        gtfri_str += ","
         # Speed
-        gtfri_str.append(str(gpsd.fix.speed)+ ",")
+        gtfri_str += str(str(gpsd.fix.speed)+ ",")
         # heading
-        gtfri_str.append("168,")
+        gtfri_str += "168,"
         # Altitude
-        gtfri_str.append(str(gpsd.fix.altitude)+ ",")
+        gtfri_str += str(str(gpsd.fix.altitude)+ ",")
         # Longitude
-        gtfri_str.append(str(gpsd.fix.longitude)+ ",")
+        gtfri_str += str(str(gpsd.fix.longitude)+ ",")
         # Latitude
-        gtfri_str.append(str(gpsd.fix.latitude)+ ",")
+        gtfri_str += str(str(gpsd.fix.latitude)+ ",")
         # Latitude
-        gtfri_str.append(str(gpsd.fix.latitude)+ ",")
+        gtfri_str += str(str(gpsd.fix.latitude)+ ",")
         print(gtfri_str)
         
     def gtinf_method(self,test_var = None): 
