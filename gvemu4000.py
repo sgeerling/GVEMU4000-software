@@ -62,3 +62,21 @@ def main():
   
 if __name__== "__main__":
   main()
+
+
+  # 1) revisar los gps_event_measurent Ningun paquete raro se ha encontrado
+  # 2) LOGS        Los logs no muestran entradas con la imei del camión de prueba.
+  # 3) Drivetech
+
+
+# aaguilaru
+# kaufmann01
+
+# https://vpn.kaufmann.cl 443
+
+# BD 10.1.1.23
+# copiloto-dev 1433
+
+# user dev-r
+# pass think_pad.#82
+	
