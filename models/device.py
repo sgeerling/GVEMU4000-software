@@ -37,8 +37,8 @@ class device(object):
         gtfri_str += str(str(share.gpsd.fix.longitude)+ ",")
         # Latitude
         gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")
-        # Latitude
-        gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")
+        # GNSS UTC time
+        print(ctime())
         print(gtfri_str)
         
     def gtinf_method(self,test_var = None): 

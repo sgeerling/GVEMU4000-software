@@ -24,8 +24,7 @@ def main():
     gvemu.start()
     print("threads started!!!!!!!!!!!!\n")
     while True:
-      print (share.imei)
-      print (share.gpsd.fix.latitude)
+      print ("Im alive")
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
