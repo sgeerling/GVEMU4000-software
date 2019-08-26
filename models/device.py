@@ -9,7 +9,6 @@ class device(object):
     def gtfri_method(self,test_var = None):
         print("\n\ngtfri issued\n")
         now = datetime.now()
-        print("Message content:\n")
         gtfri_str = ""
         # Header
         gtfri_str += "+RESP:GTFRI,"
