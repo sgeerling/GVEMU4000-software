@@ -24,6 +24,10 @@ def main():
     gvemu.start()
     print("threads started!!!!!!!!!!!!\n")
     while True:
+      while share.to_server:
+        print("server queue not empty!")
+        str_to_server = share.to_server.popleft()
+        print(str_to_server)
       print ("\n\nIm alive\n")
       time.sleep(1)
       
