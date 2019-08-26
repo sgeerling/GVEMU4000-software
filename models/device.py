@@ -69,7 +69,7 @@ class device(object):
         # The following params are going to be added when sending the frame
         # Send time
         # Footer
-        share.to_server.append(gtfri_str)
+        share.to_server.append(gtfri_str) # try here
         
     def gtinf_method(self,test_var = None): 
         print("gtinf into queue\n")
