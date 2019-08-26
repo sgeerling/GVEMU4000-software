@@ -25,7 +25,7 @@ def main():
     print("4\n")
     gvemu = dev(params)
     print("5\n")
-    gvemu.run()
+    gvemu.start()
     print("6\n")
     print("threads started!!!!!!!!!!!!\n")
     print(share.imei)
