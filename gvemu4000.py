@@ -39,7 +39,7 @@ def main():
     while True:
       print ("latitude  " +str(gpsd.fix.latitude))
       raw =os.popen("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1",'w',1)
-      imei=raw.split(': ').[1]
+      imei=raw.split(': ')[1]
       print(imei)
       time.sleep(5)
       
