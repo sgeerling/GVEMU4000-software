@@ -112,6 +112,11 @@ local
 replacedefaultroute
 ```
 
+One of the functions on the program uses _/var/log/messages_ to get the IMEI value of the internet module. In order to get this information, we must add to _/etc/chatscripts/gprs_ before the connection is issued:
+```
+OK            AT+GSN
+```
+
 You can see that we are using an m2m entel SIM card, change the credentials if needed.
 Now we need to add the APN credentials to the following files:
 
