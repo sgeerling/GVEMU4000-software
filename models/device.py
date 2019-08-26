@@ -3,6 +3,7 @@
 from utils.utils import perpetualTimer as timer
 from time import ctime
 imei = ""
+gpsd = ""
 class device(object):
     
     def gtfri_method(self,test_var = None):
