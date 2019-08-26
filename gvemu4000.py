@@ -5,7 +5,7 @@
 import time
 from models.device import device as dev
 from models.gps_get import gpsd, GpsPoller
-import utils.share.imei as imei
+import utils.share as share
 import utils.utils.get_imei as get_imei
 
       
@@ -21,15 +21,15 @@ def main():
     gvemu = dev(params)
     gvemu.start()
     print("threads started\n")
-    print(imei)
+    print(share.imei)
     while True:
-      print (imei)
+      print (share.imei)
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print ("\nKilling Thread...")
-    gpsp.running = False
-    gpsp.join() # wait for the thread to finish what it's doing
+    #gpsp.running = False
+    #gpsp.join() # wait for the thread to finish what it's doing
     
   print ("Done.\nExiting.")
   
