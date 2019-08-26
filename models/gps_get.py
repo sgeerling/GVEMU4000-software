@@ -1,6 +1,6 @@
 from gps import *
 import threading
-
+gpsd = None
 class GpsPoller(threading.Thread):
   def __init__(self):
     threading.Thread.__init__(self)

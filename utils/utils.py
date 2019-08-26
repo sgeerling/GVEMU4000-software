@@ -2,7 +2,7 @@
 
 from threading import Timer,Thread,Event
 import os
-
+imei = None
 def hrs_to_sec(value):
     return round((value * 60 * 60), 1)
 
