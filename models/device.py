@@ -2,12 +2,12 @@
 
 from utils.utils import perpetualTimer as timer
 from time import ctime
-from gvemu4000 import gpsd 
+
 class device(object):
     
     def gtfri_method(self,test_var = None): 
         print("gtfri into queue\n")
-        
+        print(gpsd.fix.latitude)
     def gtinf_method(self,test_var = None): 
         print("gtinf into queue\n")
         
