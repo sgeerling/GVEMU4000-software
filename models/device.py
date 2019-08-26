@@ -2,7 +2,7 @@
 
 from utils.utils import perpetualTimer as timer
 from time import ctime
-from gps_get import gpsd, imei
+from ./gps_get import gpsd, imei
 imei = ""
 gpsd = ""
 class device(object):
