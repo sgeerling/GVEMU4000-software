@@ -4,7 +4,7 @@
 """
 import time
 from models.device import device as dev
-from models.gps_dev import gpsd, imei
+from models.gps_get import gpsd, imei
 
 
 
