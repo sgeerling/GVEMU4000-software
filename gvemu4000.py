@@ -40,7 +40,7 @@ def main():
       print ("latitude  " +str(gpsd.fix.latitude))
       raw =str( os.system("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1"))
       raw.split(': ')
-      print(raw[1])
+      print(raw)
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
