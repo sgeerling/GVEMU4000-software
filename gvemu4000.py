@@ -6,7 +6,7 @@ import time
 from models.device import device as dev
 from models.gps_get import gpsd, GpsPoller
 import utils.share as share
-import utils.utils.get_imei as get_imei
+import utils.utils as utils
 
       
 # these parameters are globals for now.
@@ -16,7 +16,7 @@ params['period_gtfri'] = 1
 #params['period_gtinf'] = 
 
 def main():
-  get_imei()
+  utils.get_imei()
   try:
     gvemu = dev(params)
     gvemu.start()
