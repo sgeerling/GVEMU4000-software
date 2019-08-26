@@ -320,6 +320,12 @@ Now on the venv, install the gps libraries:
 pip3 install gps
 ```
 
+Pika is also needed
+```
+pip3 install pica
+```
+
+
 
 
 
