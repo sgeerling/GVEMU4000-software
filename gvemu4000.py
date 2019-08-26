@@ -40,8 +40,10 @@ def main():
       print ("latitude  " +str(gpsd.fix.latitude))
       raw =os.popen("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1").read()
       raw = str(raw)
-      imei=raw.split(": ")
-      print(imei[1])
+      aux1=raw.split(": ")
+      aux2=aux1[1].split("^")
+      imei=aux2[0]
+      print(imei)
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
