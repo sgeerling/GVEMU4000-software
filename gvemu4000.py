@@ -4,7 +4,7 @@
 """
 import time
 from models.device import device as dev
-from models.gps_get import gpsd, GpsPoller
+import models.gps_get as gps
 import utils.share as share
 import utils.utils as utils
 
@@ -17,10 +17,11 @@ params['period_gtfri'] = 1
 
 def main():
   utils.get_imei()
+  gpsp = GpsPoller()
   try:
     gvemu = dev(params)
     gvemu.start()
-    share.gpsd.run()
+    gpsp.run()
     print("threads started\n")
     print(share.imei)
     while True:
