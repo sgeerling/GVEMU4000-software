@@ -20,16 +20,18 @@ def main():
   try:
     gvemu = dev(params)
     gvemu.start()
+    share.gpsd.run()
     print("threads started\n")
     print(share.imei)
     while True:
       print (share.imei)
+      print (share.gpsd.fix.latitude)
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print ("\nKilling Thread...")
-    #gpsp.running = False
-    #gpsp.join() # wait for the thread to finish what it's doing
+    share.gpsp.running = False
+    share.gpsp.join() # wait for the thread to finish what it's doing
     
   print ("Done.\nExiting.")
   
