@@ -5,7 +5,7 @@
 import time
 from models.device import device as dev
 from models.gps_get import gpsd, imei, get_imei, GpsPoller
-
+from utils.utils import imei
 
 
       
@@ -18,7 +18,8 @@ params['period_gtfri'] = 1
 def main():
   gvemu = dev(params)
   gvemu.start()
-  print("threads started\n") 
+  print("threads started\n")
+  print(imei)
   gpsp = GpsPoller() # create the thread
   try:
     gpsp.start() # start it up
