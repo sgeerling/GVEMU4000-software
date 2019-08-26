@@ -6,6 +6,7 @@ from time import ctime
 class device(object):
     
     def gtfri_method(self,test_var = None):
+        global imei
         print("gtfri issued\n")
         print("Message content:\n")
         gtfri_str = ""
