@@ -8,7 +8,6 @@ class device(object):
     
     def gtfri_method(self,test_var = None):
         print("\n\ngtfri issued\n")
-        now = datetime.now()
         gtfri_str = ""
         # Header
         gtfri_str += "+RESP:GTFRI,"
@@ -37,7 +36,7 @@ class device(object):
         # Latitude
         gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")
         # GNSS UTC time
-        gtfri_str += str((now.strftime("%Y%m%d%H%M%S")))
+        gtfri_str += str((datetime.now().strftime("%Y%m%d%H%M%S")))
         # MCC
         gtfri_str += "0730,"
         # MNC
