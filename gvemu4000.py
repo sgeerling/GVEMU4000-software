@@ -13,7 +13,7 @@ import socket
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
-params['period_gtfri'] = 2
+params['period_gtfri'] = 15
 #params['period_gtinf'] = 
 
 def main():
@@ -35,6 +35,7 @@ def main():
           str_to_server += ",FFFF$"
           print(str_to_server)
           s.sendall(str_to_server.encode())
+          time.sleep(1)
           data = s.recv(1024)
           print(data)
         s.close()
