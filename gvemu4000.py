@@ -38,7 +38,7 @@ def main():
     gpsp.start() # start it up
     while True:
       print ("latitude  " +str(gpsd.fix.latitude))
-      raw = os.system("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1")
+      raw =str( os.system("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1"))
       raw.split(': ')
       print(raw[2])
       time.sleep(5)
