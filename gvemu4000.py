@@ -36,7 +36,7 @@ gpsd = None #seting the global variable
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
-params['period_gtfri'] = 3
+params['period_gtfri'] = 1
 #params['period_gtinf'] = 
 imei = get_imei()
 
