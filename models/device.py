@@ -38,7 +38,7 @@ class device(object):
         # GNSS UTC time
         gtfri_str += str((datetime.now().strftime("%Y%m%d%H%M%S")))
         # MCC
-        gtfri_str += "0730,"
+        gtfri_str += ",0730,"
         # MNC
         gtfri_str += "0001,"
         # LAC
