@@ -16,8 +16,11 @@ params['period_gtfri'] = 1
 #params['period_gtinf'] = 
 
 def main():
+  print("0\n")
   utils.get_imei()
+  print("1\n")
   gpsp = gps.GpsPoller()
+  print("2\n")
   try:
     gvemu = dev(params)
     gvemu.start()
