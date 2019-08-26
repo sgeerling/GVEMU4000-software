@@ -15,7 +15,7 @@ params = {}
 params['period_gtfri'] = 1
 #params['period_gtinf'] = 
 imei = get_imei()
-
+global gpsd
 
 def main():
   gvemu = dev(params)

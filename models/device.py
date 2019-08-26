@@ -2,45 +2,42 @@
 
 from utils.utils import perpetualTimer as timer
 from time import ctime
-from .gps_get import gpsd, imei
-imei = ""
-gpsd = ""
+
 class device(object):
     
     def gtfri_method(self,test_var = None):
-        global imei
         print("gtfri issued\n")
-        print("Message content:\n")
-        gtfri_str = ""
-        # Header
-        gtfri_str += "+RESP:GTFRI,"
-        # Protocol ver
-        gtfri_str += "270601,"
-        # IMEI
-        gtfri_str += str(str(imei)+",")
-        # Dev name
-        gtfri_str += ","
-        # External Vcc
-        gtfri_str += ","
-        # Report ID
-        gtfri_str += "10,"
-        # Number
-        gtfri_str += "1,"
-        # GNSS accuracy
-        gtfri_str += ","
-        # Speed
-        gtfri_str += str(str(gpsd.fix.speed)+ ",")
-        # heading
-        gtfri_str += "168,"
-        # Altitude
-        gtfri_str += str(str(gpsd.fix.altitude)+ ",")
-        # Longitude
-        gtfri_str += str(str(gpsd.fix.longitude)+ ",")
-        # Latitude
-        gtfri_str += str(str(gpsd.fix.latitude)+ ",")
-        # Latitude
-        gtfri_str += str(str(gpsd.fix.latitude)+ ",")
-        print(gtfri_str)
+        # print("Message content:\n")
+        # gtfri_str = ""
+        # # Header
+        # gtfri_str += "+RESP:GTFRI,"
+        # # Protocol ver
+        # gtfri_str += "270601,"
+        # # IMEI
+        # gtfri_str += str(str(imei)+",")
+        # # Dev name
+        # gtfri_str += ","
+        # # External Vcc
+        # gtfri_str += ","
+        # # Report ID
+        # gtfri_str += "10,"
+        # # Number
+        # gtfri_str += "1,"
+        # # GNSS accuracy
+        # gtfri_str += ","
+        # # Speed
+        # gtfri_str += str(str(gpsd.fix.speed)+ ",")
+        # # heading
+        # gtfri_str += "168,"
+        # # Altitude
+        # gtfri_str += str(str(gpsd.fix.altitude)+ ",")
+        # # Longitude
+        # gtfri_str += str(str(gpsd.fix.longitude)+ ",")
+        # # Latitude
+        # gtfri_str += str(str(gpsd.fix.latitude)+ ",")
+        # # Latitude
+        # gtfri_str += str(str(gpsd.fix.latitude)+ ",")
+        # print(gtfri_str)
         
     def gtinf_method(self,test_var = None): 
         print("gtinf into queue\n")
