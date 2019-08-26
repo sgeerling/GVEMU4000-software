@@ -34,7 +34,7 @@ def main():
         while share.to_server:
           str_to_server = share.to_server.popleft()
           print(str_to_server)
-          s.sendall(str_to_server)
+          s.sendall(str_to_server.encode())
           data = s.recv(1024)
           print(data)
         s.close()
