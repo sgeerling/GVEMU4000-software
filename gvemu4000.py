@@ -12,8 +12,8 @@ gpsd = None #seting the global variable
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
-params['period_gtfri'] = 0.4
-params['period_gtinf'] = 0.3
+params['period_gtfri'] = 10
+params['period_gtinf'] = 5
 
 class GpsPoller(threading.Thread):
   def __init__(self):
@@ -25,7 +25,7 @@ class GpsPoller(threading.Thread):
 
   def run(self):
     global gpsd
-    while gpsp.running:
+    while self.running:
       gpsd.next() #this will continue to loop and grab EACH set of gpsd info to clear the buffer
 
 
@@ -37,7 +37,7 @@ def main():
   try:
     while True:
       gpsp.start() # start it up
-      print ("latitude  " +gpsd.fix.latitude)
+      print ("latitude  " +str(gpsd.fix.latitude))
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
