@@ -2,7 +2,7 @@
 
 from utils.utils import perpetualTimer as timer
 from time import ctime
-import ../utils.share as share
+import utils.share as share
 
 class device(object):
     
