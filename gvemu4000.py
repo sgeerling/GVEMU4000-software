@@ -17,7 +17,7 @@ params['period_gtfri'] = 1
 
 def main():
   utils.get_imei()
-  gpsp = GpsPoller()
+  gpsp = gps.GpsPoller()
   try:
     gvemu = dev(params)
     gvemu.start()
