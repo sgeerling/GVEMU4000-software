@@ -7,12 +7,14 @@ from models.device import device as dev
 import models.gps_get as gps
 import utils.share as share
 import utils.utils as utils
-
+from models.queue import Queue
       
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
 params = {}
 params['period_gtfri'] = 2
+params['alert_amqp_url'] = "amqp://tester:copilotoTester01000@10.1.1.55:5672/copiloto"
+params['alert_queue_name'] = "test"
 #params['period_gtinf'] = 
 
 def main():
@@ -23,11 +25,17 @@ def main():
     gvemu = dev(params)
     gvemu.start()
     print("threads started!!!!!!!!!!!!\n")
+    
+    publishing_queue = Queue(params['alert_amqp_url'], params['alert_queue_name'])
+    publishing_queue.connect()
+    publishing_queue.create_channel()
+    
     while True:
       while share.to_server:
         print("server queue not empty!")
         str_to_server = share.to_server.popleft()
         print(str_to_server)
+        publishing_queue.publish_message(publishing_queue.channel, str_to_server)
       print ("\n\nIm alive\n")
       time.sleep(1)
       

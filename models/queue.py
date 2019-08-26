@@ -33,7 +33,6 @@ class Queue(object):
 
     def get_message_from_channel(self, channel):
         method_frame, header_frame, body = channel.basic_get(queue=self.queue_name)
-        #message = json.loads(body.decode('utf8','strict'))
         message = str(body.decode('utf8', 'strict')) 
         return message, method_frame, header_frame, body
 
