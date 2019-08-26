@@ -41,7 +41,7 @@ def main():
       raw =os.popen("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1",'w',1)
       raw = str(raw)
       imei=raw.split(": ")
-      #print(imei[1])
+      print(raw)
       time.sleep(5)
       
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
