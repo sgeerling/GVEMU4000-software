@@ -22,7 +22,7 @@ def main():
   gpsp = gps.GpsPoller()
   print("2\n")
   try:
-    gpsp.run()
+    gpsp.start()
     print("4\n")
     gvemu = dev(params)
     print("5\n")
