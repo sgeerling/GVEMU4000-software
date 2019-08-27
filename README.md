@@ -1,5 +1,7 @@
 # GVEMU4000!!!
+
 (GE-VE-MU 4 triple o')
+
 This project aims to generate a replica of the queclink GV300w. The idea is to use a [BeagleBone Black](https://beagleboard.org/black) to get info from the 
 telemetry devices, connect a GNSS and a cellular antenna like the picture:
 
@@ -108,6 +110,11 @@ noauth
 nocrtscts
 local
 replacedefaultroute
+```
+
+One of the functions on the program uses _/var/log/messages_ to get the IMEI value of the internet module. In order to get this information, we must add to _/etc/chatscripts/gprs_ before the connection is issued:
+```
+OK            AT+GSN
 ```
 
 You can see that we are using an m2m entel SIM card, change the credentials if needed.
