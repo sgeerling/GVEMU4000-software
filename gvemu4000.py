@@ -2,6 +2,7 @@
 """
 @author: gopimn
 """
+import serial
 import time
 from models.device import device as dev
 import models.gps_get as gps
@@ -10,10 +11,13 @@ import utils.utils as utils
 from models.queue import Queue
 from datetime import datetime
 import socket
+
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
+
 params = {}
 params['period_gtfri'] = 15
+
 #params['period_gtinf'] = 
 
 def main():
@@ -28,6 +32,7 @@ def main():
       if share.to_server:
         print("server queue not empty!")
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # UGLY HARDCODE
         s.connect(("190.216.145.154", 61000))
         while share.to_server:
           str_to_server = share.to_server.popleft()
