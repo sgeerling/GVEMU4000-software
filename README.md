@@ -68,22 +68,26 @@ Change the following lines:
 ```
 #uboot_overlay_addr0=/lib/firmware/<file0>.dtbo
 #uboot_overlay_addr1=/lib/firmware/<file1>.dtbo
+#uboot_overlay_addr2=/lib/firmware/<file2>.dtbo
+#uboot_overlay_addr3=/lib/firmware/<file3>.dtbo
 ```
 
 for:
 
 ```
-uboot_overlay_addr0=/lib/firmware/BB-UART2-00A0.dtbo
-uboot_overlay_addr1=/lib/firmware/BB-UART4-00A0.dtbo
+uboot_overlay_addr0=/lib/firmware/BB-UART1-00A0.dtbo
+uboot_overlay_addr1=/lib/firmware/BB-UART2-00A0.dtbo
+uboot_overlay_addr2=/lib/firmware/BB-UART4-00A0.dtbo
+uboot_overlay_addr3=/lib/firmware/BB-UART5-00A0.dtbo
 ```
 
 And add the following line
 
 ```
-cape_enable=capemgr.enable_partno=BB-UART2,BB-UART4
+cape_enable=capemgr.enable_partno=BB-UART1,BB-UART2,BB-UART4,BB-UART5
 ```
 
-Reboot and uart 2 and 4 will be woking.
+Reboot and uarts 1,,42 and 5 will be woking.
 
 ## GSM
 
