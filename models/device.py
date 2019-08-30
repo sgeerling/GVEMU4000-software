@@ -128,5 +128,5 @@ class device(object):
         if 'period_gtinf' in self.params.keys():
             self.timer_gtinf.start()
         # Added in a negli way
-        self.timer_gtinf.start()
+        self.timer_gtudt.start()
 
