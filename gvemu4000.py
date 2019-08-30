@@ -19,7 +19,8 @@ params = {}
 params['period_gtfri'] = 15
 
 #params['period_gtinf'] = 
-
+server_ip_add = "190.216.145.154"
+server_port = 61000
 def main():
   utils.get_imei()
   gpsp = gps.GpsPoller()
@@ -30,10 +31,10 @@ def main():
     print("threads started!!!!!!!!!!!!\n")
     while True:
       if share.to_server:
-        print("server queue not empty!")
+        print("\nEBOT:server queue not empty!\n")
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # UGLY HARDCODE
-        s.connect(("190.216.145.154", 61000))
+        s.connect((server_ip_add, server_port))
         while share.to_server:
           str_to_server = share.to_server.popleft()
           str_to_server += str((datetime.now().strftime("%Y%m%d%H%M%S")))
