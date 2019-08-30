@@ -96,11 +96,11 @@ class device(object):
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
 
-        while True:
-            ans = self.serialport.readline()
-            if ans:
+        #while True:
+        #ans = self.serialport.readline()
+        #if ans:
                 # What if str() fails?
-                print(str(ans))
+        #        print(str(ans))
             # sleep plz????
 
 
