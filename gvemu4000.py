@@ -46,15 +46,14 @@ def main():
         s.close()
       print ("\n\nIm alive\n")
       time.sleep(1)
-      
+
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print ("\nKilling Thread...")
     share.gpsp.running = False
     share.gpsp.join() # wait for the thread to finish what it's doing
-    
+
   print ("Done.\nExiting.")
-  
+
 if __name__== "__main__":
   main()
-
-
+#EOF

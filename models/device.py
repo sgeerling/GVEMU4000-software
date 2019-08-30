@@ -3,9 +3,10 @@
 from utils.utils import perpetualTimer as timer
 from datetime import datetime
 import utils.share as share
+import serial
 
 class device(object):
-    
+
     def gtfri_method(self,test_var = None):
         print("\n\ngtfri issued\n")
         gtfri_str = ""
@@ -69,16 +70,16 @@ class device(object):
         # Send time
         # Footer
         share.to_server.append(gtfri_str) # try here
-        
-    def gtinf_method(self,test_var = None): 
+
+    def gtinf_method(self,test_var = None):
         print("gtinf into queue\n")
-                  
+
     def kamaleon_listener(self,test_var = None):
-        
+
         print("Starting listener\n")
-        
+
         # - [ ] Check if the port is open
-        # - [ ] Check if the port has available data before calling readline 
+        # - [ ] Check if the port has available data before calling readline
         while True:
             ans = self.serialport.readline()
             if ans:
@@ -87,13 +88,14 @@ class device(object):
             # sleep plz????
 
     def print_gtudt(self,test_var = None):
-        
+
         print("EBOT: SENDING GTDUT.\n")
         print(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,180,6667776665,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
-        
+
         self.serialport.write(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,<LATITUDE?>,<LONGITUDE?>,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
         # - [ ] Check if the port is open
-        # - [ ] Check if the port has available data before calling readline 
+        # - [ ] Check if the port has available data before calling readline
+
         while True:
             ans = self.serialport.readline()
             if ans:
@@ -101,30 +103,30 @@ class device(object):
                 print(str(ans))
             # sleep plz????
 
-            
+
     def __init__(self,params):
-        
+
         self.params = params
 
-        # Exception for not having 
+        # Exception for not having
         self.serialport = serial.Serial("/dev/ttyO5",115200, timeout = 0.5)
-        
+
         # necesary?
         #self.born_date = str((datetime.now().strftime("%Y%m%d%H%M%S")))
-        
+
         if 'period_gtfri' in params.keys():
             self.timer_gtfri = timer(params['period_gtfri'],self.gtfri_method)
         if 'period_gtinf' in params.keys():
             self.timer_gtinf = timer(params['period_gtinf'],self.gtinf_method)
         # Added in a negli way
         self.timer_gtudt = timer(45,self.print_gtudt)
-       
+
     def start(self):
-        
+
         if 'period_gtfri' in self.params.keys():
             self.timer_gtfri.start()
         if 'period_gtinf' in self.params.keys():
             self.timer_gtinf.start()
         # Added in a negli way
         self.timer_gtinf.start()
-        
+

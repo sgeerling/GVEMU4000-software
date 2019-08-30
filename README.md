@@ -334,8 +334,3 @@ DOnt forget pyserial
 ~~~~
 pip3 install pyserial
 ~~~~
-
-
-
-
-
