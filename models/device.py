@@ -109,9 +109,11 @@ class device(object):
         # print(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,180,6667776665,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
         # check the encpodign      issue
         #ASSUMING IS A STRING
-        aux = str(test_var).split(',')
+        aux = str(test_var)
+        aux=aux.split(',')
+
         to_kam=aux[3]+aux[4]+aux[5]
-        self.serialport.write(to_kam)
+        self.serialport.write(to_kam.decode())
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
 
