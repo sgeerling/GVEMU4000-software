@@ -109,7 +109,7 @@ class device(object):
         self.params = params
 
         # Exception for not having
-        self.serialport = serial.Serial("/dev/ttyO1",115200, timeout = 0.5)
+        self.serialport = serial.Serial("/dev/ttyO5",115200, timeout = 0.5)
 
         # necesary?
         #self.born_date = str((datetime.now().strftime("%Y%m%d%H%M%S")))
