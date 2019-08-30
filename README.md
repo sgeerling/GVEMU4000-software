@@ -331,9 +331,9 @@ pip3 install pica
 
 DOnt forget pyserial 
 
-```
+~~~~
 pip3 install pyserial
-```
+~~~~
 
 
 
