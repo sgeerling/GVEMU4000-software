@@ -112,7 +112,7 @@ class device(object):
         aux = str(test_var)
         aux=aux.split(',')
 
-        to_kam=aux[3]+","+aux[4]+","+aux[5]
+        to_kam=aux[3]+","+aux[4]+","+aux[5]+"\r\n"
         self.serialport.write(bytes(to_kam,'utf-8'))
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
