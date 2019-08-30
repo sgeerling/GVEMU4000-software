@@ -108,7 +108,10 @@ class device(object):
         #print("EBOT: SENDING GTDUT.\n")
         # print(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,180,6667776665,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
         # check the encpodign      issue
-        self.serialport.write(test_var)
+        #ASSUMING IS A STRING
+        aux = test_var.SPLIT(',')
+        to_kam=aux[3]+aux[4]+aux[5]
+        self.serialport.write(to_kam)
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
 
