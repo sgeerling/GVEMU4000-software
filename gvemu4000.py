@@ -42,6 +42,7 @@ def main():
           s.sendall(str_to_server.encode())
           time.sleep(1)
           data = s.recv(1024)
+          print("\nEBOT: SENDED FROM SERVER\n")
           print(data)
         s.close()
       print ("\n\nIm alive\n")

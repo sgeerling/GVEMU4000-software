@@ -89,7 +89,7 @@ class device(object):
 
     def print_gtudt(self,test_var = None):
 
-        print("EBOT: SENDING GTDUT.\n")
+        #print("EBOT: SENDING GTDUT.\n")
         print(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,180,6667776665,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
 
         self.serialport.write(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,<LATITUDE?>,<LONGITUDE?>,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
@@ -119,7 +119,7 @@ class device(object):
         if 'period_gtinf' in params.keys():
             self.timer_gtinf = timer(params['period_gtinf'],self.gtinf_method)
         # Added in a negli way
-        self.timer_gtudt = timer(45,self.print_gtudt)
+        self.timer_gtudt = timer(2,self.print_gtudt)
 
     def start(self):
 
