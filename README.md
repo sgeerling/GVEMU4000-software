@@ -87,7 +87,7 @@ And add the following line
 cape_enable=capemgr.enable_partno=BB-UART1,BB-UART2,BB-UART4,BB-UART5
 ```
 
-Reboot and uarts 1,,42 and 5 will be woking.
+Reboot and uarts 1,2,4 and 5 will be woking.
 
 ## GSM
 
@@ -329,6 +329,11 @@ Pika is also needed
 pip3 install pica
 ```
 
+DOnt forget pyserial 
+
+```
+pip3 install pyserial
+```
 
 
 
