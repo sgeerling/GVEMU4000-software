@@ -109,7 +109,7 @@ class device(object):
         # print(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,180,6667776665,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
         # check the encpodign      issue
         #ASSUMING IS A STRING
-        aux = test_var.SPLIT(',')
+        aux = test_var.split(',')
         to_kam=aux[3]+aux[4]+aux[5]
         self.serialport.write(to_kam)
         # - [ ] Check if the port is open
