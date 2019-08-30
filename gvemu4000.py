@@ -41,10 +41,11 @@ def main():
           str_to_server += ",FFFF$"
           print(str_to_server)
           s.sendall(str_to_server.encode())
-          time.sleep(1)
+          time.sleep(0.1)
           data = s.recv(1024)
           print("\nEBOT: SENDED FROM SERVER\n")
           print(data)
+          gvemu.send_to_kam(data)
         s.close()
       print ("\n\nIm alive\n")
       time.sleep(1)

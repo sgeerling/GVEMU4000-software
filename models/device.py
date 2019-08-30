@@ -103,6 +103,21 @@ class device(object):
         #        print(str(ans))
             # sleep plz????
 
+    def send_to_kam(self,test_var = None):
+
+        #print("EBOT: SENDING GTDUT.\n")
+        # print(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,180,6667776665,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
+        # check the encpodign      issue
+        self.serialport.write(test_var)
+        # - [ ] Check if the port is open
+        # - [ ] Check if the port has available data before calling readline
+
+        #while True:
+        #ans = self.serialport.readline()
+        #if ans:
+                # What if str() fails?
+        #        print(str(ans))
+            # sleep plz????
 
     def __init__(self,params):
 
