@@ -16,9 +16,9 @@ import socket
 # when one of those is None, theres  no excecution of the timer thread,
 
 params = {}
-params['period_gtfri'] = 15
+params['period_gtfri'] = 2
 
-#params['period_gtinf'] = 
+#params['period_gtinf'] =
 server_ip_add = "190.216.145.154"
 server_port = 61000
 def main():
