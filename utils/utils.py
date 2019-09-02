@@ -19,7 +19,6 @@ def is_gtdat(data):
     print("DECODE!!!!")
     data = data.decode()
     aux = str(data).split(",")
-
     if (len(aux) >10):
         header = str(aux[0])
         print(header)

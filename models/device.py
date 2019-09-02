@@ -58,11 +58,11 @@ class device(object):
             if ans:
                 # What if str() fails?
                 if(utils.is_gtdat(ans)):
-                    print(str(ans))
-                    share.to_server.append(str(ans)) # try here
+                    print(ans.decode())
+                    #share.to_server.append(str(ans)) # try here
                 else:
                     print("Text not recognized")
-                    print(str(ans))
+                    print(ans.decode())
             # sleep plz????
 
     def print_gtudt(self,test_var = None):
