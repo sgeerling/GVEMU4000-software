@@ -58,6 +58,7 @@ class device(object):
             if ans:
                 # What if str() fails?
                 if(utils.is_gtdat(ans)):
+                    print("sending to queue")
                     print(ans.decode())
                     share.to_server.append(ans.decode()) # try here
                 else:
