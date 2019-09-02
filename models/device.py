@@ -57,7 +57,7 @@ class device(object):
             ans = self.serialport.readline()
             if ans:
                 # What if str() fails?
-                if(utils.is_gtdat(data)):
+                if(utils.is_gtdat(ans)):
                     print(str(ans))
                     share.to_server.append(str(ans)) # try here
                 else:
