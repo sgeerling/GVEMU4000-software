@@ -4,7 +4,7 @@ from utils.utils import perpetualTimer as timer
 from datetime import datetime
 import utils.share as share
 import serial
-
+import threading
 class device(object):
 
     def gtfri_method(self,test_var = None):
