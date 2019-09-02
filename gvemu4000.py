@@ -14,10 +14,10 @@ import socket
 
 # these parameters are globals for now.
 # when one of those is None, theres  no excecution of the timer thread,
-
+# this variable should be on utils/share.py
 params = {}
 params['period_gtfri'] = 2
-
+params['period_gtudt'] = 20
 #params['period_gtinf'] =
 server_ip_add = "190.216.145.154"
 server_port = 61000
