@@ -46,7 +46,7 @@ def main():
           print("\nEBOT: SENDED FROM SERVER\n")
           print(data)
           gvemu.send_to_kam(data)
-          gvemu.send_to_kam("\r\n")
+          
         s.close()
       print ("\n\nIm alive\n")
       time.sleep(1)
