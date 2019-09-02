@@ -17,6 +17,7 @@ def get_imei():
 
 def is_gtdat(data):
     print("DECODE!!!!")
+    data = data.decode()
     aux = str(data).split(",")
 
     if (len(aux) >10):
