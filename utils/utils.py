@@ -23,9 +23,9 @@ def is_gtdat(data):
         header = aux[0]
         header += "'"
         print(header)
-        aux = b'AT+GTDAT=gv300w'
+        aux = "AT+GTDAT=gv300w"
         print(aux)
-        if (header == aux):
+        if (header.decode() == aux):
             return True
     return False
             
