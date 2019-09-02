@@ -17,8 +17,7 @@ def get_imei():
 
 def is_gtdat(data):
     if (isinstance(data, str)):
-        aux = data.split(",")
-        print(aux[0])
+        aux = str(data).split(",")
         if (len(aux) >10):
             print(aux[0])
             #if (aux[0] == b'AT+GTDAT=gv300w'):
