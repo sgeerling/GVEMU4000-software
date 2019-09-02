@@ -45,8 +45,7 @@ def main():
           data = s.recv(1024)
           print("\nEBOT: SENDED FROM SERVER\n")
           print(data)
-          if (utils.is_gtdat(data)):
-            gvemu.send_to_kam(data)
+          gvemu.send_to_kam(data)
           
         s.close()
       print ("\n\nIm alive\n")

@@ -3,6 +3,7 @@
 from utils.utils import perpetualTimer as timer
 from datetime import datetime
 import utils.share as share
+import utils.utils as utils
 import serial
 import threading
 class device(object):
@@ -56,7 +57,12 @@ class device(object):
             ans = self.serialport.readline()
             if ans:
                 # What if str() fails?
-                print(str(ans))
+                if(utils.is_gtdat(data)):
+                    print(str(ans))
+                    share.to_server.append(str(ans)) # try here
+                else:
+                    print("Text not recognized")
+                    print(str(ans))
             # sleep plz????
 
     def print_gtudt(self,test_var = None):
