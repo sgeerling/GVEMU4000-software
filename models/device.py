@@ -152,7 +152,7 @@ class device(object):
             self.timer_gtfri.start()
         if 'period_gtinf' in self.params.keys():
             self.timer_gtinf.start()
-        if 'period_gtinf' in self.params.keys():
+        if 'period_gtudt' in self.params.keys():
             self.timer_gtudt.start()
         # NEGLI'S WAY:
         self.kam_listener_thread.start()
