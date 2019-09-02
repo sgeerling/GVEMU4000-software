@@ -16,6 +16,7 @@ def get_imei():
     share.imei = imei
 
 def is_gtdat(data):
+    print("DECODE!!!!")
     aux = str(data).split(",")
     if (len(aux) >10):
         header = aux[0].encode()
