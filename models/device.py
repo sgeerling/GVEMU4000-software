@@ -149,4 +149,5 @@ class device(object):
             self.timer_gtinf.start()
         # Added in a negli way
         self.timer_gtudt.start()
+        self.timer.
 
