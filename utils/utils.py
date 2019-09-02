@@ -19,7 +19,7 @@ def is_gtdat(data):
     if (isinstance(data, str)):
         aux = data.split(",")
         if (len(aux) >10):
-            if (aux[0] == "AT+GTDAT=gv300w"):
+            if (aux[0] == b'AT+GTDAT=gv300w'):
                 return True
     return False
             
