@@ -59,7 +59,7 @@ class device(object):
                 # What if str() fails?
                 if(utils.is_gtdat(ans)):
                     print(ans.decode())
-                    #share.to_server.append(str(ans)) # try here
+                    share.to_server.append(ans.decode()) # try here
                 else:
                     print("Text not recognized")
                     print(ans.decode())
