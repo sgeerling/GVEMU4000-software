@@ -20,9 +20,7 @@ def is_gtdat(data):
     aux = str(data).split(",")
 
     if (len(aux) >10):
-        header = aux[0]
-        header += "'"
-        header = header.decode()
+        header = str(aux[0])
         print(header)
         aux = "AT+GTDAT=gv300w"
         print(aux)
