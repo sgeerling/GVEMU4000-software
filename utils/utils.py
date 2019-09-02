@@ -22,10 +22,10 @@ def is_gtdat(data):
     if (len(aux) >10):
         header = aux[0]
         header += "'"
-        print(header)
+        header = header.encode() 
         aux = "AT+GTDAT=gv300w"
         print(aux)
-        if (header.encode() == aux):
+        if (header == aux):
             return True
     return False
             
