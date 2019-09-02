@@ -20,7 +20,10 @@ def is_gtdat(data):
     aux = str(data).split(",")
     if (len(aux) >10):
         header = aux[0].encode()
-        if (header == b'AT+GTDAT=gv300w'.decode()):
+        print(header)
+        aux = b'AT+GTDAT=gv300w'
+        print(aux)
+        if (header == aux):
             return True
     return False
             
