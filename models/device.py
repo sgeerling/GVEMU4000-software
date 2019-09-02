@@ -104,7 +104,7 @@ class device(object):
         gtudt_str += ","                                            #* reserved
         gtudt_str += ","                                            #* reserved
         gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) #! SEND TIME
-        gtudt_str += ",FFFF$"                                       #* Footer
+        gtudt_str += ",FFFF$\r\n"                                       #* Footer
         print(str(gtudt_str))
         self.serialport.write(bytes(gtudt_str,'utf-8'))
 
