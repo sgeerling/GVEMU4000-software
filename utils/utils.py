@@ -16,7 +16,7 @@ def get_imei():
     share.imei = imei
 
 def is_gtdat(data):
-    if (isinstance(data, basestring)):
+    if (isinstance(data, str)):
         aux = data.split(",")
         if (len(aux) >10):
             if (aux[0] == "AT+GTDAT=gv300w"):
