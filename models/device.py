@@ -143,7 +143,7 @@ class device(object):
         if 'period_gtudt' in params.keys():
             self.timer_gtudt = timer(params['period_gtudt'],self.print_gtudt)
         # NEGLI'S WAY:
-        kam_listener_thread = threading.Thread(target=self.kamaleon_listener, args=(1,))
+        self.kam_listener_thread = threading.Thread(target=self.kamaleon_listener, args=(1,))
         
         
     def start(self):
