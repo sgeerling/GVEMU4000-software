@@ -60,7 +60,7 @@ class device(object):
                 if(utils.is_gtdat(ans)):
                     print("sending to queue")
                     print(ans.decode())
-                    share.to_server.append(ans.decode()) # try here
+                    share.to_server.append(ans) # try here
                 else:
                     print("Text not recognized")
                     print(ans.decode())
