@@ -35,6 +35,7 @@ def main():
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # UGLY HARDCODE
         s.connect((server_ip_add, server_port))
+        s.settimeout(0.5)
         while share.to_server:
           str_to_server = share.to_server.popleft()
           str_to_server += str((datetime.now().strftime("%Y%m%d%H%M%S")))
