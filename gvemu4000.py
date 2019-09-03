@@ -49,7 +49,7 @@ def main():
               print("\nEBOT: SENDED FROM SERVER\n")
               print(data)
               gvemu.send_to_kam(data)
-          except socket.Timeouterror:
+          except socket.timeout:
             print("TIMEOUT")
           
         s.close()
