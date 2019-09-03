@@ -9,7 +9,7 @@ import threading
 class device(object):
 
     def gtfri_method(self,test_var = None):
-        print("\n\ngtfri issued\n")
+        print("\n\nissuing gtfri \n")
         gtfri_str = ""
         gtfri_str += "+RESP:GTFRI,"# Header
         gtfri_str += "270601," # Protocol ver
@@ -59,9 +59,34 @@ class device(object):
                 # What if str() fails?
                 data = utils.is_gtdat(ans)
                 if data != False:
-                    print("sending to queue")
+                    print("\n\nissuing gtfri \n")
                     print(data)
-                    #share.to_server.append(ans.decode()) # try here
+                    gtdat_str = ""
+                    gtdat_str += "+RESP:GTDAT,"# Header
+                    gtdat_str += "270601," # Protocol ver
+                    gtdat_str += str(str(share.imei)+",")# IMEI
+                    gtdat_str += "," # Dev name
+                    gtdat_str += "1," # Report type
+                    gtdat_str += ","# Reserved
+                    gtdat_str += "," # Reserved
+                    gtdat_str += str(str(data)+ ",") # Data to the server
+                    gtdat_str += "0," # GPS accuracy
+                    gtdat_str += str(str(share.gpsd.fix.speed)+ ",")# Speed
+                    gtdat_str += "," # Azimuth
+                    gtdat_str += str(str(share.gpsd.fix.altitude)+ ",")# Altitude
+                    gtdat_str += str(str(share.gpsd.fix.longitude)+ ",")# Longitude
+                    gtdat_str += str(str(share.gpsd.fix.latitude)+ ",")# Latitude
+                    gtdat_str += str((datetime.now().strftime("%Y%m%d%H%M%S")))# GNSS UTC time
+                    gtdat_str += ",0730,"# MCC
+                    gtdat_str += "0001," # MNC
+                    gtdat_str += "3536," # LAC
+                    gtdat_str += "52FB390," # CELL ID
+                    gtdat_str += ","# res
+                    gtdat_str += ","# Res
+                    gtdat_str += ","# Res
+                    gtdat_str += ","# Res
+                    gtdat_str += ","# Res
+                    share.to_server.append(gtdat_str) # try here
                 else:
                     print("Text not recognized")
                     print(data)
