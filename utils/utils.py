@@ -25,7 +25,7 @@ def is_gtdat(data):
         aux = "AT+GTDAT=gv300w"
         print(aux)
         if (header == aux):
-            return True
+            return str(aux[3])
     return False
             
 class SqlInsertingError(Exception):

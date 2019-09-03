@@ -57,13 +57,14 @@ class device(object):
             ans = self.serialport.readline()
             if ans:
                 # What if str() fails?
-                if(utils.is_gtdat(ans)):
+                data = utils.is_gtdat(ans)
+                if data != False:
                     print("sending to queue")
-                    print(ans.decode())
-                    share.to_server.append(ans.decode()) # try here
+                    print(data)
+                    #share.to_server.append(ans.decode()) # try here
                 else:
                     print("Text not recognized")
-                    print(ans.decode())
+                    print(data)
             # sleep plz????
 
     def print_gtudt(self,test_var = None):
