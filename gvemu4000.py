@@ -43,7 +43,8 @@ def main():
           print(str_to_server)
           #s.sendall(str_to_server.encode())
           time.sleep(0.1)
-          data = s.recv(1024)
+          try:
+            data = s.recv(1024)
           if data:
             print("\nEBOT: SENDED FROM SERVER\n")
             print(data)
