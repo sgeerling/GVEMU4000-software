@@ -41,9 +41,9 @@ def main():
           str_to_server += str((datetime.now().strftime("%Y%m%d%H%M%S")))
           str_to_server += ",FFFF$"
           print(str_to_server)
-          #s.sendall(str_to_server.encode())
-          time.sleep(0.1)
           try:
+            s.sendall(str_to_server.encode())
+            time.sleep(0.1)
             data = s.recv(1024)
             if data:
               print("\nEBOT: SENDED FROM SERVER\n")
