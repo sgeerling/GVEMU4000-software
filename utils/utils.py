@@ -18,14 +18,14 @@ def get_imei():
 def is_gtdat(data):
     print("DECODE!!!!")
     data = data.decode()
-    aux = str(data).split(",")
-    if (len(aux) >10):
-        header = str(aux[0])
+    aux_0 = str(data).split(",")
+    if (len(aux_0) >10):
+        header = str(aux_0[0])
         print(header)
-        aux = "AT+GTDAT=gv300w"
-        print(aux)
-        if (header == aux):
-            return str(aux[3])
+        aux_1 = "AT+GTDAT=gv300w"
+        print(aux_1)
+        if (header == aux_1):
+            return str(aux_0[3])
     return False
             
 class SqlInsertingError(Exception):
