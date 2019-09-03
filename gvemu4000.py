@@ -45,11 +45,10 @@ def main():
           time.sleep(0.1)
           try:
             data = s.recv(1024)
-          if data:
-            print("\nEBOT: SENDED FROM SERVER\n")
-            print(data)
-            gvemu.send_to_kam(data)
-          
+            if data:
+              print("\nEBOT: SENDED FROM SERVER\n")
+              print(data)
+              gvemu.send_to_kam(data)
         s.close()
       print ("\n\nIm alive\n")
       time.sleep(1)
