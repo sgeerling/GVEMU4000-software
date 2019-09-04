@@ -34,8 +34,8 @@ f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 c_handler.setLevel(logging.DEBUG)
 f_handler.setLevel(logging.DEBUG)
 
-c_format = logging.Formatter('[%(asctime)s] eBot %(levelname)s %(name): %(message)s', datefmt='%d%m%y-%H:%M:%S')
-f_format = logging.Formatter('[%(asctime)s] eBot %(levelname)s %(name): %(message)s', datefmt='%d%m%y-%H:%M:%S')
+c_format = logging.Formatter('[%(asctime)s] eBot %(levelname)s %(name)s: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+f_format = logging.Formatter('[%(asctime)s] eBot %(levelname)s %(name)s: %(message)s', datefmt='%d%m%y-%H:%M:%S')
 
 c_handler.setFormatter(c_format)
 f_handler.setFormatter(f_format)
