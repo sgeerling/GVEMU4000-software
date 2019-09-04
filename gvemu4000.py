@@ -24,7 +24,11 @@ params['period_gtudt'] = 2
 #params['period_gtinf'] =
 server_ip_add = "190.216.145.154"
 server_port = 61000
-logging.basicConfig(level=logging.DEBUG, filename='app.log', filemode='w',format='%(asctime)s-eBot: %(message)s', datefmt='%d-%m-%y %H:%M:%S')
+logging.basicConfig(level=logging.DEBUG,
+                    filename='app.log',
+                    filemode='w',
+                    format='%(asctime)s-eBot: %(message)s',
+                    datefmt='%d-%m-%y %H:%M:%S')
 logging.debug('This will get logged')
 def main():
     utils.get_imei()
