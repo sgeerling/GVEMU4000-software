@@ -43,22 +43,6 @@ c_handler.setFormatter(formatt)
 f_handler.setFormatter(formatt)
 
 logger.info('Welcome eTrancer!')
-
-# logging.basicConfig()
-# logging.StreamHandler()
-# a = logging.FileHandler('gvemu_test.log', mode='a')
-# logger = logging.getLogger(__name__)
-# logger.addHandler(a)
-# logger.setLevel(logging.DEBUG)
-
-# logger.debug('debug message')
-# logger.info('info message')
-# logger.warn('warn message')
-# logger.error('error message')
-# logger.critical('critical message')
-
-while True:
-    time.sleep(1)
     
 def main():
     utils.get_imei()
