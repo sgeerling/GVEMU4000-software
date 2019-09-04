@@ -28,7 +28,7 @@ server_port = 61000
 logging.basicConfig()
 
 logger = logging.getLogger()
-
+logger.debug('invisible magic')  # <-- magic
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
