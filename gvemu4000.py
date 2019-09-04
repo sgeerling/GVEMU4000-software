@@ -7,7 +7,6 @@ import time
 from models.device import GVDevice as dev
 import models.gps_get as gps
 import utils.share as share
-import utils.share.logger as logger
 import utils.utils as utils
 from models.queue import Queue
 from datetime import datetime
@@ -27,7 +26,7 @@ server_port = 61000
 
 
 
-logger.info('Welcome eTrancer!')
+share.logger.info('Welcome eTrancer!')
     
 def main():
     utils.get_imei()
