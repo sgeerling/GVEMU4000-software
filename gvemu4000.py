@@ -35,16 +35,12 @@ logger = logging.getLogger()
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
 
-
-
-logger.debug('invisible magic')  # <-- magic
-
 logger.setLevel(logging.DEBUG)
 
 formatt = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
 
-logger.setFormatter(formatt)
-
+c_handler.setFormatter(formatt)
+f_handler.setFormatter(formatt)
 
 logger.info('Welcome eTrancer!')
 
