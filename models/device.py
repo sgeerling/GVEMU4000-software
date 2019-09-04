@@ -25,7 +25,7 @@ class GVDevice(object):
                                  threading.Thread(target=self.kamaleon_listener,
                                                   args=(1,))
     def gtfri_method(self,test_var = None):
-        share.logger.debug("\n\nissuing gtfri \n")
+        share.logger.debug("issuing gtfri")
         gtfri_str = ""
         gtfri_str += "+RESP:GTFRI,"# Header
         gtfri_str += "270601," # Protocol ver
