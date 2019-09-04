@@ -326,7 +326,7 @@ pip3 install gps
 
 Pika is also needed
 ```
-pip3 install pica
+pip3 install pika
 ```
 
 DOnt forget pyserial 
@@ -334,3 +334,23 @@ DOnt forget pyserial
 ~~~~
 pip3 install pyserial
 ~~~~
+
+## Service for the gvemu application
+
+To add a daemon at startup that runs the application, create the file _/lib/systemd/system/gv.service_, with the following content:
+```
+[Unit]
+Description = eTrans gvemu daemon
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart = sh /home/debian/git/GVEMU4000-software/gv_daemon.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
