@@ -25,12 +25,12 @@ params['period_gtudt'] = 2
 server_ip_add = "190.216.145.154"
 server_port = 61000
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
-c_handler.basicConfig(level=logging.DEBUG)
-f_handler.basicConfig(level=logging.DEBUG)
+c_handler.setLevel(logging.DEBUG)
+f_handler.setLevel(logging.DEBUG)
 
 c_format = logging.Formatter('%(asctime)s-eBot %(levelname)s: %(message)s')#, datefmt='%d-%m-%y %H:%M:%S')
 f_format = logging.Formatter('%(asctime)s-eBot %(levelname)s: %(message)s')#, datefmt='%d-%m-%y %H:%M:%S')
