@@ -11,6 +11,8 @@ import utils.utils as utils
 from models.queue import Queue
 from datetime import datetime
 import socket
+import logging
+
 # 79 chars according to PEP 8
 ###############################################################################
 # these parameters are globals for now.
@@ -22,6 +24,7 @@ params['period_gtudt'] = 2
 #params['period_gtinf'] =
 server_ip_add = "190.216.145.154"
 server_port = 61000
+logging.basicConfig(format='%(asctime)s-eBot: %(message)s', datefmt='%d-%m-%y %H:%M:%S')
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
@@ -29,10 +32,10 @@ def main():
         gpsp.start()
         gvemu = dev(params)
         gvemu.start()
-        print("threads started!!!!!!!!!!!!\n")
+        logging.info("threads started!")
         while True:
             if share.to_server:
-                print("\nEBOT:server queue not empty!\n")
+                logging.info("server queue not empty!")
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 # UGLY HARDCODE
                 s.connect((server_ip_add, server_port))
@@ -42,27 +45,27 @@ def main():
                     str_to_server +=\
                                   str((datetime.now().strftime("%Y%m%d%H%M%S")))
                     str_to_server += ",FFFF$"
-                    print(str_to_server)
+                    logging.info("Transmitting: %s", str_to_server)
                     try:
                         s.sendall(str_to_server.encode())
                         time.sleep(0.1)
                         data = s.recv(1024)
                         if data:
-                            print("\nEBOT: SENDED FROM SERVER\n")
-                            print(data)
+                            logging.info("recieved from server: %s", str(data))
                             gvemu.send_to_kam(data)
-                    except socket.timeout:
-                        print("TIMEOUT")
+                    except socket.timeout as e:
+                        logging.error("Exception raised:", exc_info=True)
                     finally:
                         s.close()
-                    print ("\n\nIm alive\n")
+                    logging.info("I'm alive")
                     time.sleep(1)
 
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
-        print ("\nKilling Thread...")
+        logging.error("Killing thread")
         share.gpsp.running = False
         share.gpsp.join() # wait for the thread to finish what it's doing
-        print ("Done.\nExiting.")
+        logging.error("ciao =)")
+        
 
 if __name__== "__main__":
     main()
