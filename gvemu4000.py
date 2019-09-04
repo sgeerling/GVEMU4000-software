@@ -25,9 +25,9 @@ params['period_gtudt'] = 2
 server_ip_add = "190.216.145.154"
 server_port = 61000
 
-logging.basicConfig(level=logging.DEBUG)
+#logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__).basicConfig(level=logging.DEBUG)
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
