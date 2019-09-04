@@ -43,11 +43,8 @@ f_handler.setFormatter(f_format)
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
 
-logger.debug('This will get logged')
-logger.info('This will get logged')
-logger.warning('This will get logged')
-logger.error('This will get logged')
-logger.critical('This will get logged')
+logger.info('Welcome eTrancer!')
+
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
