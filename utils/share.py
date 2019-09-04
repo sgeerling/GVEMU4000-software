@@ -10,8 +10,8 @@ c_handler = logging.StreamHandler() # Log for display
 
 f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
-formattc = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-formattf = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+formattc = logging.Formatter('[%(asctime)s] (%(levelname)s%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s] (%(levelname)s%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
 
 c_handler.setFormatter(formattc)
 
