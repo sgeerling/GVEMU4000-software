@@ -4,7 +4,7 @@ import logging
 imei = None
 gpsd = None
 to_server = deque()
-
+logging.basicConfig()
 logger = logging.getLogger(__name__)
 
 c_handler = logging.StreamHandler() # Log for display
