@@ -27,7 +27,7 @@ server_port = 61000
 
 #logging
 
-logger = logging.getLogger(__name__).basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)#.basicConfig(level=logging.DEBUG)
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
