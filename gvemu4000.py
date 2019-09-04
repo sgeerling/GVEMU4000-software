@@ -58,7 +58,6 @@ def main():
                             gvemu.send_to_kam(data)
                     except socket.timeout as e:
                         share.logger.error("Exception raised:", exc_info=True)
-                    finally:
                 s.close()
                 share.logger.info("I'm alive")
                 time.sleep(0.8)
