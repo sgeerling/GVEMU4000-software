@@ -61,7 +61,7 @@ def main():
                     finally:
                 s.close()
                 share.logger.info("I'm alive")
-                time.sleep(1)
+                time.sleep(0.8)
 
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
         share.logger.error("Killing thread")
