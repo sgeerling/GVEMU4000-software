@@ -4,7 +4,7 @@
 """
 import serial
 import time
-from models.device import device as dev
+from models.GVdevice import device as dev
 import models.gps_get as gps
 import utils.share as share
 import utils.utils as utils
