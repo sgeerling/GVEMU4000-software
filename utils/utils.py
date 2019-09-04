@@ -15,6 +15,19 @@ def get_imei():
     imei=aux2[0]
     share.imei = imei
 
+def is_gtdat(data):
+    print("DECODE!!!!")
+    data = data.decode()
+    aux_0 = str(data).split(",")
+    if (len(aux_0) >10):
+        header = str(aux_0[0])
+        print(header)
+        aux_1 = "AT+GTDAT=gv300w"
+        print(aux_1)
+        if (header == aux_1):
+            return str(aux_0[3])
+    return False
+            
 class SqlInsertingError(Exception):
     def __init__(self, arg):
         self.args = arg
