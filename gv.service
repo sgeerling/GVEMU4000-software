@@ -5,9 +5,9 @@ StartLimitIntervalSec=0
 
 [Service]
 Type=simple
-Restart=always
-RestartSec=1
-ExecStart = sh /home/debian/git/GVEMU4000-software/gv_daemon.sh
+#Restart=always
+#RestartSec=1
+ExecStart = /home/debian/git/GVEMU4000-software/gv_daemon.sh
 
 [Install]
 WantedBy=multi-user.target
