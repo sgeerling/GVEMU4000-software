@@ -38,10 +38,10 @@ f_format = logging.Formatter('%(asctime)s-eBot: %(message)s')#, datefmt='%d-%m-%
 c_handler.setFormatter(c_format)
 f_handler.setFormatter(f_format)
 
-
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-logger.critical('This will get logged')
+
+logger.debug('This will get logged')
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
@@ -52,7 +52,7 @@ def main():
         logger.info("threads started!")
         while True:
             if share.to_server:
-                logger.info("server queue not empty!")
+                logger.debug("server queue not empty!")
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 # UGLY HARDCODE
                 s.connect((server_ip_add, server_port))
