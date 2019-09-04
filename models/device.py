@@ -25,7 +25,7 @@ class GVDevice(object):
                                  threading.Thread(target=self.kamaleon_listener,
                                                   args=(1,))
     def gtfri_method(self,test_var = None):
-        print("\n\nissuing gtfri \n")
+        share.logger.debug("\n\nissuing gtfri \n")
         gtfri_str = ""
         gtfri_str += "+RESP:GTFRI,"# Header
         gtfri_str += "270601," # Protocol ver
@@ -62,11 +62,11 @@ class GVDevice(object):
         share.to_server.append(gtfri_str) # try here
 
     def gtinf_method(self,test_var = None):
-        print("gtinf into queue\n")
+        share.logger.debug("gtinf into queue\n")
 
     def kamaleon_listener(self,test_var = None):
 
-        print("Starting listener\n")
+        share.logger.debug("Starting listener\n")
 
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
@@ -76,8 +76,8 @@ class GVDevice(object):
                 # What if str() fails?
                 data = utils.is_gtdat(ans)
                 if data != False:
-                    print("\n\nissuing gtfri \n")
-                    print(data)
+                    share.logger.debug("\n\nissuing gtfri \n")
+                    share.logger.debug(data)
                     gtdat_str = ""
                     gtdat_str += "+RESP:GTDAT,"# Header
                     gtdat_str += "270601," # Protocol ver
@@ -107,13 +107,13 @@ class GVDevice(object):
                     gtdat_str += ","# Res
                     share.to_server.append(gtdat_str) # try here
                 else:
-                    print("Text not recognized")
-                    print(data)
+                    share.logger.debug("Text not recognized")
+                    share.logger.debug(data)
             # sleep plz????
 
     def print_gtudt(self,test_var = None):
         gtudt_str = "" 
-        print("eBOT: SENDING GTDUT.\n")                             # * means fixed, ! means variable
+        share.logger.debug("SENDING GTDUT.\n")                             # * means fixed, ! means variable
         gtudt_str += "+RESP:GTUDT,"                                 #* header
         gtudt_str += ","                                            #* Protocol Ver.
         gtudt_str += ","                                            #* FW Version
@@ -157,7 +157,7 @@ class GVDevice(object):
         gtudt_str += ","                                            #* reserved
         gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) #! SEND TIME
         gtudt_str += ",FFFF$\r\n"                                       #* Footer
-        print(str(gtudt_str))
+        share.logger.debug(str(gtudt_str))
         self.serialport.write(bytes(gtudt_str,'utf-8'))
 
     def send_to_kam(self,test_var = None):

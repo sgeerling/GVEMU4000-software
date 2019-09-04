@@ -16,14 +16,14 @@ def get_imei():
     share.imei = imei
 
 def is_gtdat(data):
-    print("DECODE!!!!")
+    share.logger.debug("DECODE!!!!")
     data = data.decode()
     aux_0 = str(data).split(",")
     if (len(aux_0) >10):
         header = str(aux_0[0])
-        print(header)
+        share.logger.debug(header)
         aux_1 = "AT+GTDAT=gv300w"
-        print(aux_1)
+        share.logger.debug(aux_1)
         if (header == aux_1):
             return str(aux_0[3])
     return False

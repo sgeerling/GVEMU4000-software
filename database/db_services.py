@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import logging
 import time
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -10,11 +9,8 @@ from sqlalchemy import String
 from sqlalchemy import DateTime
 from sqlalchemy import Float
 from utils.utils import SqlInsertingError
+import utils.share as share
 
-
-logging.basicConfig(level=int(os.environ['DEFAULT_LOGGING_LEVEL']),
-                    format='%(asctime)s %(process)s %(levelname)-8s %(name)s %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S',)
 
 """
 Methods to load, save and process data in the database.
@@ -30,7 +26,7 @@ def save_queue_raw(db, alert=None):
     """
 
     if alert is None:
-        logging.warning("No alert data to save...")
+        share.logger.warning("No alert data to save...")
         return None
 
     try:
@@ -46,14 +42,14 @@ def save_queue_raw(db, alert=None):
 
         sql_insert = table.insert().values(raw_data=alert)
         print(str(sql_insert))
-        logging.info("Saving into DB...")
+        share.logger.info("Saving into DB...")
         result = cn.execute(sql_insert)
         can_alert_id = result.inserted_primary_key[0]
         cn.close()
         return int(can_alert_id)
 
     except Exception as e:
-        logging.critical(e)
+        share.logger.critical(e)
         cn.close()
         raise e
 
