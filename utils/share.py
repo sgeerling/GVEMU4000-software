@@ -19,8 +19,8 @@ formattf = logging.Formatter('[%(asctime)s](%(levelname)s) eBot: %(message)s', d
 c_handler.setFormatter(formattc)
 f_handler.setFormatter(formattf)
 
-c_handler.setLevel(logging.DEBUG)
-f_handler.setLevel(logging.DEBUG)
+logger.setLevel(logging.DEBUG)
+#f_handler.setLevel(logging.DEBUG)
 
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
