@@ -29,6 +29,7 @@ server_port = 61000
 
 # logger = logging.getLogger()
 # logger.debug('invisible magic')  # <-- magic
+
 # c_handler = logging.StreamHandler() # Log for display
 # f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
@@ -49,6 +50,8 @@ server_port = 61000
 import logging
 
 logging.basicConfig()
+logging.FileHandler('gvemu_test.log', mode='a')
+logging.StreamHandler()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
