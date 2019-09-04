@@ -40,7 +40,7 @@ class GVDevice(object):
         gtfri_str += str(str(share.gpsd.fix.altitude)+ ",")# Altitude
         gtfri_str += str(str(share.gpsd.fix.longitude)+ ",")# Longitude
         gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")# Latitude
-        gtfri_str +=
+        gtfri_str +=\
                   str((datetime.now().strftime("%Y%m%d%H%M%S")))# GNSS UTC time
         gtfri_str += ",0730,"# MCC
         gtfri_str += "0001," # MNC
@@ -94,7 +94,7 @@ class GVDevice(object):
                     gtdat_str += str(str(share.gpsd.fix.longitude)+ ",")# Long
                     gtdat_str += str(str(share.gpsd.fix.latitude)+ ",")# Lat
                     # GNSS UTC time
-                    gtdat_str +=
+                    gtdat_str +=\
                               str((datetime.now().strftime("%Y%m%d%H%M%S")))
                     gtdat_str += ",0730,"# MCC
                     gtdat_str += "0001," # MNC
