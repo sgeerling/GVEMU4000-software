@@ -62,11 +62,11 @@ class GVDevice(object):
         share.to_server.append(gtfri_str) # try here
 
     def gtinf_method(self,test_var = None):
-        share.logger.debug("gtinf into queue\n")
+        share.logger.debug("gtinf into queue")
 
     def kamaleon_listener(self,test_var = None):
 
-        share.logger.debug("Starting listener\n")
+        share.logger.debug("Starting listener")
 
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
@@ -76,7 +76,7 @@ class GVDevice(object):
                 # What if str() fails?
                 data = utils.is_gtdat(ans)
                 if data != False:
-                    share.logger.debug("\n\nissuing gtfri \n")
+                    share.logger.debug("issuing gtfri")
                     share.logger.debug(data)
                     gtdat_str = ""
                     gtdat_str += "+RESP:GTDAT,"# Header
@@ -113,7 +113,7 @@ class GVDevice(object):
 
     def print_gtudt(self,test_var = None):
         gtudt_str = "" 
-        share.logger.debug("SENDING GTDUT.\n")                             # * means fixed, ! means variable
+        share.logger.debug("SENDING GTDUT")                             # * means fixed, ! means variable
         gtudt_str += "+RESP:GTUDT,"                                 #* header
         gtudt_str += ","                                            #* Protocol Ver.
         gtudt_str += ","                                            #* FW Version
