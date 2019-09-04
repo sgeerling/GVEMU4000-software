@@ -49,7 +49,7 @@ server_port = 61000
 
 logging.basicConfig()
 #logging.StreamHandler()
-logging.FileHandler('gvemu_test.log', mode='a')
+#logging.FileHandler('gvemu_test.log', mode='a')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
