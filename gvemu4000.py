@@ -47,11 +47,9 @@ server_port = 61000
 
 # logger.info('Welcome eTrancer!')
 
-import logging
-
 logging.basicConfig()
-logging.FileHandler('gvemu_test.log', mode='a')
 logging.StreamHandler()
+logging.FileHandler('gvemu_test.log', mode='a')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
