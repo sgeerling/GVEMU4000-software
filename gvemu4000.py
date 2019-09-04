@@ -25,40 +25,39 @@ params['period_gtudt'] = 2
 server_ip_add = "190.216.145.154"
 server_port = 61000
 
-# logging.basicConfig()
-
-# logger = logging.getLogger()
-# logger.debug('invisible magic')  # <-- magic
-
-# c_handler = logging.StreamHandler() # Log for display
-# f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
-
-# c_handler.setLevel(logging.DEBUG)
-# f_handler.setLevel(logging.DEBUG)
-
-# c_format = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-# f_format = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-
-# c_handler.setFormatter(c_format)
-# f_handler.setFormatter(f_format)
-
-# logger.addHandler(c_handler)
-# logger.addHandler(f_handler)
-
-# logger.info('Welcome eTrancer!')
-
 logging.basicConfig()
-#logging.StreamHandler()
-a = logging.FileHandler('gvemu_test.log', mode='a')
-logger = logging.getLogger(__name__)
-logger.addHandler(a)
+
+c_handler = logging.StreamHandler() # Log for display
+f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
+
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+logger = logging.getLogger()
+
+logger.debug('invisible magic')  # <-- magic
+
 logger.setLevel(logging.DEBUG)
 
-logger.debug('debug message')
-logger.info('info message')
-logger.warn('warn message')
-logger.error('error message')
-logger.critical('critical message')
+formatt = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+
+logger.setFormatter(formatt)
+
+
+logger.info('Welcome eTrancer!')
+
+# logging.basicConfig()
+# logging.StreamHandler()
+# a = logging.FileHandler('gvemu_test.log', mode='a')
+# logger = logging.getLogger(__name__)
+# logger.addHandler(a)
+# logger.setLevel(logging.DEBUG)
+
+# logger.debug('debug message')
+# logger.info('info message')
+# logger.warn('warn message')
+# logger.error('error message')
+# logger.critical('critical message')
 
 while True:
     time.sleep(1)
