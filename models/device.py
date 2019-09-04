@@ -6,8 +6,24 @@ import utils.share as share
 import utils.utils as utils
 import serial
 import threading
-class device(object):
+class GVDevice(object):
+    def __init__(self,params):
 
+        self.params = params
+
+        # Exception for not having
+        self.serialport = serial.Serial("/dev/ttyO5",115200, timeout = 0.5)
+
+        if 'period_gtfri' in params.keys():
+            self.timer_gtfri = timer(params['period_gtfri'],self.gtfri_method)
+        if 'period_gtinf' in params.keys():
+            self.timer_gtinf = timer(params['period_gtinf'],self.gtinf_method)
+        if 'period_gtudt' in params.keys():
+            self.timer_gtudt = timer(params['period_gtudt'],self.print_gtudt)
+        # NEGLI'S WAY:
+        self.kam_listener_thread =
+                                 threading.Thread(target=self.kamaleon_listener,
+                                                  args=(1,))
     def gtfri_method(self,test_var = None):
         print("\n\nissuing gtfri \n")
         gtfri_str = ""
@@ -24,7 +40,8 @@ class device(object):
         gtfri_str += str(str(share.gpsd.fix.altitude)+ ",")# Altitude
         gtfri_str += str(str(share.gpsd.fix.longitude)+ ",")# Longitude
         gtfri_str += str(str(share.gpsd.fix.latitude)+ ",")# Latitude
-        gtfri_str += str((datetime.now().strftime("%Y%m%d%H%M%S")))# GNSS UTC time
+        gtfri_str +=
+                  str((datetime.now().strftime("%Y%m%d%H%M%S")))# GNSS UTC time
         gtfri_str += ",0730,"# MCC
         gtfri_str += "0001," # MNC
         gtfri_str += "3536," # LAC
@@ -73,10 +90,12 @@ class device(object):
                     gtdat_str += "0," # GPS accuracy
                     gtdat_str += str(str(share.gpsd.fix.speed)+ ",")# Speed
                     gtdat_str += "," # Azimuth
-                    gtdat_str += str(str(share.gpsd.fix.altitude)+ ",")# Altitude
-                    gtdat_str += str(str(share.gpsd.fix.longitude)+ ",")# Longitude
-                    gtdat_str += str(str(share.gpsd.fix.latitude)+ ",")# Latitude
-                    gtdat_str += str((datetime.now().strftime("%Y%m%d%H%M%S")))# GNSS UTC time
+                    gtdat_str += str(str(share.gpsd.fix.altitude)+ ",")# Alti
+                    gtdat_str += str(str(share.gpsd.fix.longitude)+ ",")# Long
+                    gtdat_str += str(str(share.gpsd.fix.latitude)+ ",")# Lat
+                    # GNSS UTC time
+                    gtdat_str +=
+                              str((datetime.now().strftime("%Y%m%d%H%M%S")))
                     gtdat_str += ",0730,"# MCC
                     gtdat_str += "0001," # MNC
                     gtdat_str += "3536," # LAC
@@ -143,10 +162,6 @@ class device(object):
 
     def send_to_kam(self,test_var = None):
 
-        #print("EBOT: SENDING GTDUT.\n")
-        # print(str("+RESP:GTUDT,,,,,,,0,,1,1,,0,550.1,90,180,6667776665,,,,,,,,,,,,,,,,,,,,,,,,,,0001$\r\n"))
-        # check the encpodign      issue
-        #ASSUMING IS A STRING
         aux = str(test_var)
         aux=aux.split(',')
 
@@ -162,22 +177,7 @@ class device(object):
         #        print(str(ans))
             # sleep plz????
 
-    def __init__(self,params):
 
-        self.params = params
-
-        # Exception for not having
-        self.serialport = serial.Serial("/dev/ttyO5",115200, timeout = 0.5)
-
-        if 'period_gtfri' in params.keys():
-            self.timer_gtfri = timer(params['period_gtfri'],self.gtfri_method)
-        if 'period_gtinf' in params.keys():
-            self.timer_gtinf = timer(params['period_gtinf'],self.gtinf_method)
-        if 'period_gtudt' in params.keys():
-            self.timer_gtudt = timer(params['period_gtudt'],self.print_gtudt)
-        # NEGLI'S WAY:
-        self.kam_listener_thread = threading.Thread(target=self.kamaleon_listener, args=(1,))
-        
         
     def start(self):
 
