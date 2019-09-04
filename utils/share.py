@@ -12,9 +12,7 @@ f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
 logger = logging.getLogger()
 
-logger.addHandler(c_handler)
 
-logger.addHandler(f_handler)
 
 logger.setLevel(logging.DEBUG)
 
@@ -23,3 +21,7 @@ formatt = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(mess
 c_handler.setFormatter(formatt)
 
 f_handler.setFormatter(formatt)
+
+logger.addHandler(c_handler)
+
+logger.addHandler(f_handler)
