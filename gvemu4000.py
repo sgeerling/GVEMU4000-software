@@ -59,9 +59,9 @@ def main():
                     except socket.timeout as e:
                         share.logger.error("Exception raised:", exc_info=True)
                     finally:
-                        s.close()
-                    share.logger.info("I'm alive")
-                    time.sleep(1)
+                s.close()
+                share.logger.info("I'm alive")
+                time.sleep(1)
 
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
         share.logger.error("Killing thread")
