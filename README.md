@@ -354,3 +354,10 @@ ExecStart = sh /home/debian/git/GVEMU4000-software/gv_daemon.sh
 WantedBy=multi-user.target
 ```
 
+Then you can do:
+```
+systemctl enable gv.service
+systemctl start gv.service
+```
+
+
