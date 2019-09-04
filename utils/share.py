@@ -20,9 +20,9 @@ c_handler.setFormatter(formattc)
 f_handler.setFormatter(formattf)
 
 logger.setLevel(logging.DEBUG)
-#f_handler.setLevel(logging.DEBUG)
 
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
 
 logger.info("logger started")
+#!
