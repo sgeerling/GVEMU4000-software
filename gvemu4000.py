@@ -29,8 +29,8 @@ logger = logging.getLogger(__name__)
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
-c_handler.setLevel(log.DEBUG)
-f_handler.setLevel(log.DEBUG)
+c_handler.setLevel(logging.DEBUG)
+f_handler.setLevel(logging.DEBUG)
 
 c_format = logging.Formatter('%(asctime)s-eBot: %(message)s', datefmt='%d-%m-%y %H:%M:%S')
 f_format = logging.Formatter('%(asctime)s-eBot: %(message)s', datefmt='%d-%m-%y %H:%M:%S')
@@ -41,7 +41,7 @@ f_handler.setFormatter(f_format)
 
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-logging.debug('This will get logged')
+logger.debug('This will get logged')
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
