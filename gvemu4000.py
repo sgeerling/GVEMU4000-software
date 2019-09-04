@@ -7,11 +7,11 @@ import time
 from models.device import GVDevice as dev
 import models.gps_get as gps
 import utils.share as share
+import utils.share.logger as logger
 import utils.utils as utils
 from models.queue import Queue
 from datetime import datetime
 import socket
-import logging
 
 # 79 chars according to PEP 8
 ###############################################################################
@@ -25,22 +25,7 @@ params['period_gtudt'] = 2
 server_ip_add = "190.216.145.154"
 server_port = 61000
 
-logging.basicConfig()
 
-c_handler = logging.StreamHandler() # Log for display
-f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
-
-logger = logging.getLogger()
-
-logger.addHandler(c_handler)
-logger.addHandler(f_handler)
-
-logger.setLevel(logging.DEBUG)
-
-formatt = logging.Formatter('[%(asctime)s] (%(levelname)s@%(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-
-c_handler.setFormatter(formatt)
-f_handler.setFormatter(formatt)
 
 logger.info('Welcome eTrancer!')
     
