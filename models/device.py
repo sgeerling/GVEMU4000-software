@@ -21,7 +21,7 @@ class GVDevice(object):
         if 'period_gtudt' in params.keys():
             self.timer_gtudt = timer(params['period_gtudt'],self.print_gtudt)
         # NEGLI'S WAY:
-        self.kam_listener_thread =
+        self.kam_listener_thread =\
                                  threading.Thread(target=self.kamaleon_listener,
                                                   args=(1,))
     def gtfri_method(self,test_var = None):
