@@ -41,7 +41,7 @@ f_handler.setFormatter(f_format)
 
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-logger.debug('This will get logged')
+logger.critical('This will get logged')
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
