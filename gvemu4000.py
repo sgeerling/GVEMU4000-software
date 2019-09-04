@@ -30,10 +30,12 @@ logging.basicConfig()
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('gvemu_test.log', mode='a') # Log for file
 
+logger = logging.getLogger()
+
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
 
-logger = logging.getLogger()
+
 
 logger.debug('invisible magic')  # <-- magic
 
