@@ -9,10 +9,10 @@ def hrs_to_sec(value):
 
 def get_imei():
     with open("imei",'r') as file:
-        imei=file.readline
+        imei=file.readline()
         share.logger.debug("Retrieving imei from file:")
-        share.logger.debug(imei)
-        share.imei = imei
+        share.logger.debug(str(imei))
+        share.imei = str(imei)
 
 def is_gtdat(data):
     share.logger.debug("DECODE!!!!")
