@@ -335,6 +335,13 @@ DOnt forget pyserial
 pip3 install pyserial
 ~~~~
 
+And for the local DB
+
+~~~~
+pip3 install sqlalchemy
+~~~~
+
+
 ## Service for the gvemu application
 
 To add a daemon at startup that runs the application, create the file _/lib/systemd/system/gv.service_, with the following content:

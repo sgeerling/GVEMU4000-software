@@ -12,6 +12,7 @@ from models.queue import Queue
 from datetime import datetime
 import socket
 import logging
+from models import dblite
 # 79 chars according to PEP 8
 ###############################################################################
 # these parameters are globals for now.
@@ -42,10 +43,13 @@ logger.addHandler(c_handler)
 logger.addHandler(f_handler)
 
 logger.info('Welcome eTrancer!')
-    
+
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
+    dbms = mydatabase.MyDatabase(mydatabase.SQLITE, dbname='mydb.sqlite')
+    dbms.create_db_tables()
+    dbmc.insert_si("esa","mijo")
     try:
         gpsp.start()
         gvemu = dev(params)
@@ -82,7 +86,6 @@ def main():
         share.gpsp.running = False
         share.gpsp.join() # wait for the thread to finish what it's doing
         logger.error("ciao =)")
-        
 
 if __name__== "__main__":
     main()
