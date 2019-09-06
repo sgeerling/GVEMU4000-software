@@ -92,7 +92,6 @@ class MyDatabase:
         query += " VALUES ('{}','{}');".format(timestamp,message)
         print(query)
         self.execute_query(query)
-        self.print_all_data(USERS)
 
     # def insert_ii(self):
     # def insert_io(self):
