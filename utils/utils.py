@@ -28,8 +28,8 @@ def hrs_to_sec(value):
 def get_imei():
     with open("imei",'r') as file:
         imei=file.readline()
-        share.logger.debug("Retrieving imei from file:")
-        share.logger.debug(str(imei).strip())
+        logger.debug("Retrieving imei from file:")
+        logger.debug(str(imei).strip())
         share.imei = str(imei).strip()
 
 def is_gtdat(data):
@@ -38,9 +38,9 @@ def is_gtdat(data):
     aux_0 = str(data).split(",")
     if (len(aux_0) >10):
         header = str(aux_0[0])
-        share.logger.debug(header)
+        logger.debug(header)
         aux_1 = "AT+GTDAT=gv300w"
-        share.logger.debug(aux_1)
+        logger.debug(aux_1)
         if (header == aux_1):
             return str(aux_0[3])
     return False
