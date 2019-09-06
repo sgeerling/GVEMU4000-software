@@ -3,7 +3,7 @@ import pika
 
 # for the sleep on the callback
 import time
-
+import logging
 logger = logging.getLogger(__name__)
 
 c_handler = logging.StreamHandler() # Log for display
