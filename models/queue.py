@@ -26,14 +26,13 @@ class Queue(object):
         return self.channel
 
     def callback(ch, method, properties, body):
-        print(" [x] Received %r" % body)
+        share.logger.debug(" [x] Received %r" % body)
         time.sleep(body.count(b'.'))
-        print(" [x] Done")
+        share.logger.debug(" [x] Done")
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
     def get_message_from_channel(self, channel):
         method_frame, header_frame, body = channel.basic_get(queue=self.queue_name)
-        #message = json.loads(body.decode('utf8','strict'))
         message = str(body.decode('utf8', 'strict')) 
         return message, method_frame, header_frame, body
 

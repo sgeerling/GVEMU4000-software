@@ -68,22 +68,26 @@ Change the following lines:
 ```
 #uboot_overlay_addr0=/lib/firmware/<file0>.dtbo
 #uboot_overlay_addr1=/lib/firmware/<file1>.dtbo
+#uboot_overlay_addr2=/lib/firmware/<file2>.dtbo
+#uboot_overlay_addr3=/lib/firmware/<file3>.dtbo
 ```
 
 for:
 
 ```
-uboot_overlay_addr0=/lib/firmware/BB-UART2-00A0.dtbo
-uboot_overlay_addr1=/lib/firmware/BB-UART4-00A0.dtbo
+uboot_overlay_addr0=/lib/firmware/BB-UART1-00A0.dtbo
+uboot_overlay_addr1=/lib/firmware/BB-UART2-00A0.dtbo
+uboot_overlay_addr2=/lib/firmware/BB-UART4-00A0.dtbo
+uboot_overlay_addr3=/lib/firmware/BB-UART5-00A0.dtbo
 ```
 
 And add the following line
 
 ```
-cape_enable=capemgr.enable_partno=BB-UART2,BB-UART4
+cape_enable=capemgr.enable_partno=BB-UART1,BB-UART2,BB-UART4,BB-UART5
 ```
 
-Reboot and uart 2 and 4 will be woking.
+Reboot and uarts 1,2,4 and 5 will be woking.
 
 ## GSM
 
@@ -110,6 +114,11 @@ noauth
 nocrtscts
 local
 replacedefaultroute
+```
+
+One of the functions on the program uses _/var/log/messages_ to get the IMEI value of the internet module. In order to get this information, we must add to _/etc/chatscripts/gprs_ before the connection is issued:
+```
+OK            AT+GSN
 ```
 
 You can see that we are using an m2m entel SIM card, change the credentials if needed.
@@ -315,7 +324,40 @@ Now on the venv, install the gps libraries:
 pip3 install gps
 ```
 
+Pika is also needed
+```
+pip3 install pika
+```
 
+DOnt forget pyserial 
 
+~~~~
+pip3 install pyserial
+~~~~
+
+## Service for the gvemu application
+
+To add a daemon at startup that runs the application, create the file _/lib/systemd/system/gv.service_, with the following content:
+```
+[Unit]
+Description = eTrans gvemu daemon
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+#Restart=always
+#RestartSec=1
+ExecStart = /home/debian/git/GVEMU4000-software/gv_daemon.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Then you can do:
+```
+systemctl enable gv.service
+systemctl start gv.service
+```
 
 
