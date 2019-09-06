@@ -91,6 +91,7 @@ class MyDatabase:
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
         query += " VALUES ('{}','{}')  RETURNING id;".format(timestamp,message)
         res = self.execute_query(query)
+        print(res)
         return res
 
     def insert_ii(self, timestamp, message):
