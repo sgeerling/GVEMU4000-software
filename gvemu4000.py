@@ -47,7 +47,7 @@ logger.info('Welcome eTrancer!')
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
-    dbms = mydatabase.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
+    dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
     dbmc.insert_si("esa","mijo")
     try:
