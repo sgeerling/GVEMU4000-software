@@ -49,7 +49,7 @@ def main():
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
-    dbmc.insert_si("esa","mijo")
+    dbms.insert_si("esa","mijo")
     try:
         gpsp.start()
         gvemu = dev(params)
