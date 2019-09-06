@@ -3,17 +3,34 @@
 from threading import Timer,Thread,Event
 import os
 import utils.share as share
+import logging
+logger = logging.getLogger(__name__)
 
+c_handler = logging.StreamHandler() # Log for display
+f_handler = logging.FileHandler('test.log', mode='a') # Log for file
+
+
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+
+c_handler.setFormatter(formattc)
+f_handler.setFormatter(formattf)
+
+logger.setLevel(logging.DEBUG)
+
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+logger.info('Welcome eTrancer!')
 def hrs_to_sec(value):
     return round((value * 60 * 60), 1)
 
 def get_imei():
-    raw =os.popen("cat /var/log/messages | grep 'AT+GSN' -A 1 | tail -1").read()
-    raw = str(raw)
-    aux1=raw.split(": ")
-    aux2=aux1[1].split("^")
-    imei=aux2[0]
-    share.imei = imei
+    with open("imei",'r') as file:
+        imei=file.readline()
+        share.logger.debug("Retrieving imei from file:")
+        share.logger.debug(str(imei).strip())
+        share.imei = str(imei).strip()
 
 def is_gtdat(data):
     share.logger.debug("DECODE!!!!")
