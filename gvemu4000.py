@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 """
 @author: gopimn
@@ -12,7 +11,7 @@ import utils.utils as utils
 from models.queue import Queue
 from datetime import datetime
 import socket
-
+import logging
 # 79 chars according to PEP 8
 ###############################################################################
 # these parameters are globals for now.
