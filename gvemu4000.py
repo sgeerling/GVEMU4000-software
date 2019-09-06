@@ -50,6 +50,7 @@ def main():
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
     dbms.insert_si("esa","mijo")
+    dbms.print_all_data(dblite.SERIAL_IN)
     try:
         gpsp.start()
         gvemu = dev(params)
