@@ -82,11 +82,11 @@ class GVDevice(object):
         share.to_server.append(gtfri_str) # try here
 
     def gtinf_method(self,test_var = None):
-        share.logger.debug("gtinf into queue")
+        logger.debug("gtinf into queue")
 
     def kamaleon_listener(self,test_var = None):
 
-        share.logger.debug("Starting listener")
+        logger.debug("Starting listener")
 
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
