@@ -28,7 +28,7 @@ logger.info('Welcome eTrancer!')
 
 class GVDevice(object):
     def __init__(self,params):
-
+        
         self.params = params
 
         # Exception for not having
