@@ -38,7 +38,7 @@ class MyDatabase:
                       Column('id', Integer, primary_key=True),
                       Column('tstamp', String),
                       Column('msg', String),
-                      Column('sent', Int)
+                      Column('sent', Integer)
                       )
 
         users = Table(INET_IN, metadata,
@@ -51,7 +51,7 @@ class MyDatabase:
                       Column('id', Integer, primary_key=True),
                       Column('tstamp', String),
                       Column('msg', String),
-                      Column('sent', Int)
+                      Column('sent', Integer)
                       )
         try:
             metadata.create_all(self.db_engine)
