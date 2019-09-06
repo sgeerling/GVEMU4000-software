@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 @author: gopimn
@@ -24,9 +25,24 @@ params['period_gtudt'] = 2
 server_ip_add = "190.216.145.154"
 server_port = 61000
 
+logger = logging.getLogger(__name__)
+
+c_handler = logging.StreamHandler() # Log for display
+f_handler = logging.FileHandler('test.log', mode='a') # Log for file
 
 
-share.logger.info('Welcome eTrancer!')
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+
+c_handler.setFormatter(formattc)
+f_handler.setFormatter(formattf)
+
+logger.setLevel(logging.DEBUG)
+
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+logger.info('Welcome eTrancer!')
     
 def main():
     utils.get_imei()
@@ -35,10 +51,10 @@ def main():
         gpsp.start()
         gvemu = dev(params)
         gvemu.start()
-        share.logger.info("threads started!")
+        logger.info("threads started!")
         while True:
             if share.to_server:
-                share.logger.debug("server queue not empty!")
+                logger.debug("server queue not empty!")
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 # UGLY HARDCODE
                 s.connect((server_ip_add, server_port))
@@ -48,25 +64,25 @@ def main():
                     str_to_server +=\
                                   str((datetime.now().strftime("%Y%m%d%H%M%S")))
                     str_to_server += ",FFFF$"
-                    share.logger.info("Transmitting: %s", str_to_server)
+                    logger.info("Transmitting: %s", str_to_server)
                     try:
                         s.sendall(str_to_server.encode())
                         time.sleep(0.1)
                         data = s.recv(1024)
                         if data:
-                            share.logger.info("recieved from server: %s", str(data))
+                            logger.info("recieved from server: %s", str(data))
                             gvemu.send_to_kam(data)
                     except socket.timeout as e:
-                        share.logger.error("Exception raised:", exc_info=True)
+                        logger.error("Exception raised:", exc_info=True)
                 s.close()
-                share.logger.info("I'm alive")
+                logger.info("I'm alive")
                 time.sleep(0.8)
 
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
-        share.logger.error("Killing thread")
+        logger.error("Killing thread")
         share.gpsp.running = False
         share.gpsp.join() # wait for the thread to finish what it's doing
-        share.logger.error("ciao =)")
+        logger.error("ciao =)")
         
 
 if __name__== "__main__":

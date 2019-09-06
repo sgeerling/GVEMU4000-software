@@ -6,6 +6,26 @@ import utils.share as share
 import utils.utils as utils
 import serial
 import threading
+import logging
+logger = logging.getLogger(__name__)
+
+c_handler = logging.StreamHandler() # Log for display
+f_handler = logging.FileHandler('test.log', mode='a') # Log for file
+
+
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+
+c_handler.setFormatter(formattc)
+f_handler.setFormatter(formattf)
+
+logger.setLevel(logging.DEBUG)
+
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+logger.info('Welcome eTrancer!')
+
 class GVDevice(object):
     def __init__(self,params):
 
@@ -25,7 +45,7 @@ class GVDevice(object):
                                  threading.Thread(target=self.kamaleon_listener,
                                                   args=(1,))
     def gtfri_method(self,test_var = None):
-        share.logger.debug("issuing gtfri")
+        logger.debug("issuing gtfri")
         gtfri_str = ""
         gtfri_str += "+RESP:GTFRI,"# Header
         gtfri_str += "270601," # Protocol ver
@@ -76,8 +96,8 @@ class GVDevice(object):
                 # What if str() fails?
                 data = utils.is_gtdat(ans)
                 if data != False:
-                    share.logger.debug("issuing gtfri")
-                    share.logger.debug(data)
+                    logger.debug("issuing gtfri")
+                    logger.debug(data)
                     gtdat_str = ""
                     gtdat_str += "+RESP:GTDAT,"# Header
                     gtdat_str += "270601," # Protocol ver
@@ -107,13 +127,13 @@ class GVDevice(object):
                     gtdat_str += ","# Res
                     share.to_server.append(gtdat_str) # try here
                 else:
-                    share.logger.debug("Text not recognized")
-                    share.logger.debug(data)
+                    logger.debug("Text not recognized")
+                    logger.debug(data)
             # sleep plz????
 
     def print_gtudt(self,test_var = None):
         gtudt_str = "" 
-        share.logger.debug("SENDING GTDUT")                             # * means fixed, ! means variable
+        logger.debug("SENDING GTDUT")                             # * means fixed, ! means variable
         gtudt_str += "+RESP:GTUDT,"                                 #* header
         gtudt_str += ","                                            #* Protocol Ver.
         gtudt_str += ","                                            #* FW Version
@@ -157,7 +177,7 @@ class GVDevice(object):
         gtudt_str += ","                                            #* reserved
         gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) #! SEND TIME
         gtudt_str += ",FFFF$\r\n"                                       #* Footer
-        share.logger.debug(str(gtudt_str))
+        logger.debug(str(gtudt_str))
         self.serialport.write(bytes(gtudt_str,'utf-8'))
 
     def send_to_kam(self,test_var = None):

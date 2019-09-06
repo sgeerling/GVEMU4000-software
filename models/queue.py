@@ -1,12 +1,27 @@
-
-
-
 # wrappings for pushing into the queue, rabbitMQ, we are using amqp protocol
 import pika
 
 # for the sleep on the callback
 import time
 
+logger = logging.getLogger(__name__)
+
+c_handler = logging.StreamHandler() # Log for display
+f_handler = logging.FileHandler('test.log', mode='a') # Log for file
+
+
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
+
+c_handler.setFormatter(formattc)
+f_handler.setFormatter(formattf)
+
+logger.setLevel(logging.DEBUG)
+
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+logger.info('Welcome eTrancer!')
 
 class Queue(object):
 
@@ -26,9 +41,9 @@ class Queue(object):
         return self.channel
 
     def callback(ch, method, properties, body):
-        share.logger.debug(" [x] Received %r" % body)
+        logger.debug(" [x] Received %r" % body)
         time.sleep(body.count(b'.'))
-        share.logger.debug(" [x] Done")
+        logger.debug(" [x] Done")
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
     def get_message_from_channel(self, channel):
