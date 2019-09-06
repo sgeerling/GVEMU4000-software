@@ -63,7 +63,6 @@ class MyDatabase:
 
     def execute_query(self, query=''):
         if query == '' : return
-        print (query)
         with self.db_engine.connect() as connection:
             try:
                 connection.execute(query)
@@ -73,7 +72,6 @@ class MyDatabase:
 
     def print_all_data(self, table='', query=''):
         query = query if query != '' else "SELECT * FROM '{}';".format(table)
-        print(query)
         with self.db_engine.connect() as connection:
             try:
                 result = connection.execute(query)
@@ -88,8 +86,8 @@ class MyDatabase:
     def insert_si(self, timestamp, message):
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
-        query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
-        query += " VALUES ('{}','{}')  RETURNING id;".format(timestamp,message)
+        query = "DECLARE l_num PLS_INTEGER; INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
+        query += " VALUES ('{}','{}')  RETURNING id   INTO l_num;   DBMS_OUTPUT.put_line (l_num);".format(timestamp,message)
         res = self.execute_query(query)
         print(res)
         return res
