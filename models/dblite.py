@@ -90,22 +90,26 @@ class MyDatabase:
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
-        self.execute_query(query)
+        res = self.execute_query(query)
+        return res.inserted_primary_key[0]
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
-        self.execute_query(query)
+        res = self.execute_query(query)
+        return res.inserted_primary_key[0]
 
     def insert_io(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(INET_OUT)
         query += " VALUES ('{}','{}',0);".format(timestamp,message)
-        self.execute_query(query)
+        res = self.execute_query(query)
+        return res.inserted_primary_key[0]
 
     def insert_so(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_OUT)
         query += " VALUES ('{}','{}',0);".format(timestamp,message)
-        self.execute_query(query)
+        res = self.execute_query(query)
+        return res.inserted_primary_key[0]
 
     # def updae_io_sended(self, timestamp, message):
     #     query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_SO)
