@@ -11,8 +11,8 @@ def get_imei():
     with open("imei",'r') as file:
         imei=file.readline()
         share.logger.debug("Retrieving imei from file:")
-        share.logger.debug(str(imei))
-        share.imei = str(imei)
+        share.logger.debug(str(imei).strip())
+        share.imei = str(imei).strip()
 
 def is_gtdat(data):
     share.logger.debug("DECODE!!!!")
