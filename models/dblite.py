@@ -85,18 +85,37 @@ class MyDatabase:
                 result.close()
         print("\n")
 
-    def insert_si(self,timestamp,message):
+    def insert_si(self, timestamp, message):
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
-        print(query)
         self.execute_query(query)
 
-    # def insert_ii(self):
-    # def insert_io(self):
-    # def insert_so(self):
-    # def updae_io_sended(self):
+    def insert_ii(self, timestamp, message):
+        query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
+        query += " VALUES ('{}','{}');".format(timestamp,message)
+        self.execute_query(query)
+
+    def insert_io(self, timestamp, message):
+        query = "INSERT INTO {}(tstamp, msg, sent)".format(INET_OUT)
+        query += " VALUES ('{}','{}',0);".format(timestamp,message)
+        self.execute_query(query)
+
+    def insert_so(self, timestamp, message):
+        query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_OUT)
+        query += " VALUES ('{}','{}',0);".format(timestamp,message)
+        self.execute_query(query)
+
+    # def updae_io_sended(self, timestamp, message):
+    #     query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_SO)
+    #     query += " VALUES ('{}','{}',0);".format(timestamp,message)
+    #     self.execute_query(query)
+    #     # Update Data
+    #     query = "UPDATE {} set first_name='XXXX' WHERE id={id}"\
+    #         .format(USERS, id=3)
+    #     self.execute_query(query)
+    #     self.print_all_data(USERS)
     # def updae_so_sended(self):
     # def select_io_unsended(self):
     # def select_so_unsended(self)
