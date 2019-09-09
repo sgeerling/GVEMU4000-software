@@ -90,7 +90,7 @@ def main():
                             data = s.recv(1024)
                             if data:
                                 logger.info("recieved from server: %s", str(data))
-                                share.dbms.insert_ii(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
+                                integer = share.dbms.insert_ii(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
                                                str(data))
                                 gvemu.send_to_kam(data)
                         except socket.timeout as e:
