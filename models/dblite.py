@@ -85,6 +85,7 @@ class MyDatabase:
         print("\n")
 
     def insert_si(self, timestamp, message):
+        insert_id = ""
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
@@ -95,14 +96,14 @@ class MyDatabase:
             try:
                 res = connection.execute(query)
                 res = connection.execute(query2)
-                print((res))
             except Exception as e:
                 print(e)
             else:
                 for row in res:
-                    print(row) # print(row[0], row[1], row[2])
+                    insert_id = row
                 res.close()
-
+        return insert_id
+    
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
