@@ -341,6 +341,11 @@ And for the local DB
 pip3 install sqlalchemy
 ~~~~
 
+Install slite3
+
+~~~~
+apt-get install sqlite3
+~~~~
 
 ## Service for the gvemu application
 
@@ -358,7 +363,8 @@ Type=simple
 ExecStart = /home/debian/git/GVEMU4000-software/gv_daemon.sh
 
 [Install]
-WantedBy=multi-user.target
+Wanted
+By=multi-user.target
 ```
 
 Then you can do:

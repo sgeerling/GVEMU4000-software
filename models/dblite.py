@@ -86,8 +86,8 @@ class MyDatabase:
     def insert_si(self, timestamp, message):
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
-        query = "DECLARE l_num PLS_INTEGER; INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
-        query += " VALUES ('{}','{}')  RETURNING id   INTO l_num;   DBMS_OUTPUT.put_line (l_num);".format(timestamp,message)
+        query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
+        query += " VALUES ('{}','{}')  RETURNING id;".format(timestamp,message)
         res = self.execute_query(query)
         print(res)
         return res

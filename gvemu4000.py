@@ -52,6 +52,7 @@ def main():
     dbms.insert_si("esa","mijo")
     k = dbms.print_all_data(dblite.SERIAL_IN)
     print(k)
+    print(type(k))
     try:
         gpsp.start()
         gvemu = dev(params)
