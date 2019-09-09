@@ -26,39 +26,30 @@ params['period_gtudt'] = 2
 server_ip_add = "190.216.145.154"
 server_port = 61000
 
+###############################################################################
+#                  Begin of Logging block
+###############################################################################
 logger = logging.getLogger(__name__)
-
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('test.log', mode='a') # Log for file
-
-
-formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
 c_handler.setFormatter(formattc)
 f_handler.setFormatter(formattf)
-
 logger.setLevel(logging.DEBUG)
-
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-
 logger.info('Welcome eTrancer!')
+###############################################################################
+#                  End of Logging block
+###############################################################################
 
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
-    dbms.create_db_tables()
-    dbms.insert_so("a","w")
-    dbms.insert_so("a","w")
-    dbms.insert_so("a","w")
-    dbms.insert_so("a","w")
-    list = dbms.select_so_unsended()
-    while True:
-        time.sleep(1)
-        print(list[0])
-        print(list[1])
     try:
         gpsp.start()
         gvemu = dev(params)

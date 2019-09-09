@@ -1,5 +1,27 @@
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
+import logging
+
+###############################################################################
+#                  Begin of Logging block
+###############################################################################
+logger = logging.getLogger(__name__)
+c_handler = logging.StreamHandler() # Log for display
+f_handler = logging.FileHandler('test.log', mode='a') # Log for file
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
+c_handler.setFormatter(formattc)
+f_handler.setFormatter(formattf)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+logger.info('Welcome eTrancer!')
+###############################################################################
+#                  End of Logging block
+###############################################################################
+
 # Global Variables
 SQLITE                  = 'sqlite'
 
@@ -22,9 +44,10 @@ class MyDatabase:
         if dbtype in self.DB_ENGINE.keys():
             engine_url = self.DB_ENGINE[dbtype].format(DB=dbname)
             self.db_engine = create_engine(engine_url)
-            print(self.db_engine)
+            logger.info("DB engine connected OK:")
+            logger.info(self.db_engine)
         else:
-            print("DBType is not found in DB_ENGINE")
+            logger.error("DBType is not found in DB_ENGINE")
 
     def create_db_tables(self):
         metadata = MetaData()
@@ -55,10 +78,10 @@ class MyDatabase:
                       )
         try:
             metadata.create_all(self.db_engine)
-            print("Tables created")
+            logger.info("Tables created")
         except Exception as e:
-            print("Error occurred during Table creation!")
-            print(e)
+            logger.error("Error occurred during Table creation!")
+            logger.error("Exception raised:",exc_info = True)
 
 
     def execute_query(self, query=''):
@@ -68,7 +91,8 @@ class MyDatabase:
                 res = connection.execute(query)
                 return res
             except Exception as e:
-                print(e)
+                logger.error("Error occurred during query")
+                logger.error("Exception raised:",exc_info = True)
 
     def execute_query_get_id(self, query=''):
         if query == '' : return
@@ -78,7 +102,8 @@ class MyDatabase:
                 res = connection.execute(query)
                 res = connection.execute(query_id)
             except Exception as e:
-                print(e)
+                logger.error("Error occurred during query")
+                logger.error("Exception raised:",exc_info = True)
             else:
                 for row in res:
                     insert_id = row[0] # what if no answer??
@@ -91,7 +116,8 @@ class MyDatabase:
             try:
                 result = connection.execute(query)
             except Exception as e:
-                print(e)
+                logger.error("Error occurred during query")
+                logger.error("Exception raised:",exc_info = True)
             else:
                 for row in result:
                     print(row) # print(row[0], row[1], row[2])
@@ -104,7 +130,8 @@ class MyDatabase:
             try:
                 res = connection.execute(query)
             except Exception as e:
-                print(e)
+                logger.error("Error occurred during query")
+                logger.error("Exception raised:",exc_info = True)
             else:
                 data = []
                 for row in res:
