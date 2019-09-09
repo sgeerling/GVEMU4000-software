@@ -110,7 +110,7 @@ class MyDatabase:
                 data = []
                 for row in res:
                     print(row)
-                    data += row # what if no answer??
+                    data += [row]# what if no answer??
                     print(data)
                 res.close()
                 return data
@@ -151,9 +151,9 @@ class MyDatabase:
 
     def select_io_unsended(self):
         query = "SELECT * FROM {table} where sent = 0;".format(table = INET_OUT)
-        print(query)
         list = self.execute_query_get_data(query)
-
+        print (list)
+        return list
 
     # def select_so_unsended(self)
 
