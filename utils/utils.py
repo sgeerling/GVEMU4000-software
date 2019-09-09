@@ -26,12 +26,12 @@ logger.info('utils module loaded!')
 ###############################################################################
 
 def ping_inet():
-    response = os.system("ping -c 1 190.153.248.100")
+    response = os.system("ping -c 1 190.153.248.100  > /dev/null 2>&1") # ugly hardcoded IP
     if response == 0:
-        logger.info("up!")
+        logger.info("cellular network up!")
         return True
     else:
-        logger.info("down!")
+        logger.info("cellular network down!")
         return False
 
 def hrs_to_sec(value):
