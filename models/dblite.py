@@ -119,7 +119,7 @@ class MyDatabase:
     # def select_so_unsended(self)
 
     def get_last_insert_rowid(self):
-        query = "SELECT last_insert_rowid()"
+        query = "SELECT last_insert_rowid();"
         res = self.execute_query(query)
         return res
 
