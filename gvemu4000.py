@@ -52,6 +52,9 @@ def main():
     dbms.create_db_tables()
     list = dbms.select_io_unsended()
     print(list)
+    while True:
+        time.sleep(1)
+        print(list)
     try:
         gpsp.start()
         gvemu = dev(params)

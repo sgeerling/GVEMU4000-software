@@ -100,6 +100,7 @@ class MyDatabase:
 
     def execute_query_get_data(self, query=''):
         if query == '' : return
+        print (query)
         with self.db_engine.connect() as connection:
             try:
                 res = connection.execute(query)
@@ -147,8 +148,8 @@ class MyDatabase:
         self.execute_query(query)
 
     def select_io_unsended(self):
-        query = "SELECT * FROM {table} where sent = 0;"\
-            .format(table = INET_OUT)
+        query = "SELECT * FROM {table} where sent = 0;".format(table = INET_OUT)
+        print(query)
         list = self.execute_query_get_data(query)
 
 
