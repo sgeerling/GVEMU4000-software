@@ -2,6 +2,7 @@
 """
 @author: gopimn
 """
+#BOF
 import serial
 import time
 from models.device import GVDevice as dev
@@ -49,11 +50,9 @@ def main():
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
-    k,i = dbms.insert_si("esa","mijo")
-    print(k)
-    print(i)
+    dbms.insert_si("esa","mijo")
+    dbms.get_las_insert_rowid()
     dbms.print_all_data(dblite.SERIAL_IN)
-    print(type(k))
     try:
         gpsp.start()
         gvemu = dev(params)
@@ -93,4 +92,4 @@ def main():
 
 if __name__== "__main__":
     main()
-    #EOF
+#EOF

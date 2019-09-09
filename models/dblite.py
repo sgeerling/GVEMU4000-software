@@ -88,27 +88,22 @@ class MyDatabase:
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
         query += " VALUES ('{}','{}')  RETURNING id;".format(timestamp,message)
-        res = self.execute_query(query)
-        print(res)
-        return res
+        self.execute_query(query)
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
         query += " VALUES ('{}','{}')  RETURNING id;".format(timestamp,message)
-        res = self.execute_query(query)
-        return res
+        self.execute_query(query)
 
     def insert_io(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(INET_OUT)
         query += " VALUES ('{}','{}',0)  RETURNING id;".format(timestamp,message)
-        res = self.execute_query(query)
-        return res
+        self.execute_query(query)
 
     def insert_so(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_OUT)
         query += " VALUES ('{}','{}',0)  RETURNING id;".format(timestamp,message)
-        res = self.execute_query(query)
-        return res
+        self.execute_query(query)
 
     # def updae_io_sended(self, timestamp, message):
     #     query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_SO)
@@ -123,6 +118,10 @@ class MyDatabase:
     # def select_io_unsended(self):
     # def select_so_unsended(self)
 
+    def get_las_insert_rowid(self):
+        query = "SELECT last_insert_rowid()"
+        res = self.execute_query(query)
+        return res
 
     def sample_query(self):
         # Sample Query
@@ -164,4 +163,5 @@ class MyDatabase:
         self.execute_query(query)
         self.print_all_data(USERS)
 
+# https://www.pythonsheets.com/notes/python-sqlalchemy.html
 
