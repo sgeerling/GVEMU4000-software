@@ -105,6 +105,10 @@ class MyDatabase:
                 print((res))
             except Exception as e:
                 print(e)
+            else:
+                for row in res:
+                    print(row) # print(row[0], row[1], row[2])
+                res.close()
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
