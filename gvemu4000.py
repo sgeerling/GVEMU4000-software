@@ -48,7 +48,7 @@ f_handler.setFormatter(formattf)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-logger.info('Welcome eTrancer!')
+logger.info('Welcome main eTrancer!')
 ###############################################################################
 #                  End of Logging block
 ###############################################################################
@@ -56,7 +56,12 @@ logger.info('Welcome eTrancer!')
 def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
-    dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
+    # if db doesnt exists, create tables and stuff # log PLZ!
+    if not os.path.isfile('mydb.sqlite'):
+        share.dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
+        share.dbms.create_db_tables()
+    else:
+        share.dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     try:
         gpsp.start()
         gvemu = dev(params)
@@ -76,12 +81,17 @@ def main():
                             str((datetime.now().strftime("%Y%m%d%H%M%S")))
                         str_to_server += ",FFFF$"
                         logger.info("Transmitting: %s", str_to_server)
+                        id_io = share.dbms.insert_io(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
+                                       str_to_server)
                         try:
                             s.sendall(str_to_server.encode())
+                            share.dbms.updae_io_sended(id_io)
                             time.sleep(0.1)
                             data = s.recv(1024)
                             if data:
                                 logger.info("recieved from server: %s", str(data))
+                                share.dbms.insert_ii(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
+                                               str(data))
                                 gvemu.send_to_kam(data)
                         except socket.timeout as e:
                             logger.error("Exception raised:", exc_info=True)

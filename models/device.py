@@ -127,6 +127,8 @@ class GVDevice(object):
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
                     share.to_server.append(gtdat_str) # try here
+                    share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
+                                       str_to_server)
                 else:
                     logger.debug("Text not recognized")
                     logger.debug(data)
@@ -187,6 +189,8 @@ class GVDevice(object):
         aux=aux.split(',')
 
         to_kam=aux[3]+","+aux[4]+","+aux[5]+"\r\n"
+        share.dbms.insert_so(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
+                                       to_kam)
         self.serialport.write(bytes(str(to_kam)+"\r\n",'utf-8'))
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
@@ -199,7 +203,6 @@ class GVDevice(object):
             # sleep plz????
 
 
-        
     def start(self):
 
         if 'period_gtfri' in self.params.keys():

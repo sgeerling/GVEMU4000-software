@@ -4,3 +4,4 @@ import logging
 imei = None
 gpsd = None
 to_server = deque()
+dbms = None

@@ -222,4 +222,3 @@ class MyDatabase:
     #     self.print_all_data(USERS)
 
 # https://www.pythonsheets.com/notes/python-sqlalchemy.html
-
