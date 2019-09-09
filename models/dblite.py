@@ -91,8 +91,14 @@ class MyDatabase:
         query += " VALUES ('{}','{}');".format(timestamp,message)
         self.execute_query(query)
         query = "SELECT last_insert_rowid();"
-        a = self.execute_query(query)
-        print (str(a))
+        with self.db_engine.connect() as connection:
+            try:
+                res = connection.execute(query)
+                print(res)
+            except Exception as e:
+                print(e)
+        #a = self.execute_query(query)
+        #print (str(a))
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
