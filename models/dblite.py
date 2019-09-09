@@ -70,6 +70,20 @@ class MyDatabase:
             except Exception as e:
                 print(e)
 
+    def execute_query_get_id(self, query=''):
+        if query == '' : return
+        query_id = "SELECT last_insert_rowid();"
+        with self.db_engine.connect() as connection:
+            try:
+                res = connection.execute(query)
+                res = connection.execute(query_id)
+            except Exception as e:
+                print(e)
+            else:
+                for row in res:
+                    insert_id = row[0]
+                res.close()
+        return insert_id
 
     def print_all_data(self, table='', query=''):
         query = query if query != '' else "SELECT * FROM '{}';".format(table)
@@ -90,19 +104,7 @@ class MyDatabase:
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
-
-        query2 = "SELECT last_insert_rowid();"
-        with self.db_engine.connect() as connection:
-            try:
-                res = connection.execute(query)
-                res = connection.execute(query2)
-            except Exception as e:
-                print(e)
-            else:
-                for row in res:
-                    insert_id = row[0]
-                res.close()
-        return insert_id
+        return self.execute_query_get_id(query)
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
