@@ -87,22 +87,22 @@ class MyDatabase:
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
-        query += " VALUES ('{}','{}')  RETURNING id;".format(timestamp,message)
+        query += " VALUES ('{}','{}');".format(timestamp,message)
         self.execute_query(query)
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
-        query += " VALUES ('{}','{}')  RETURNING id;".format(timestamp,message)
+        query += " VALUES ('{}','{}');".format(timestamp,message)
         self.execute_query(query)
 
     def insert_io(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(INET_OUT)
-        query += " VALUES ('{}','{}',0)  RETURNING id;".format(timestamp,message)
+        query += " VALUES ('{}','{}',0);".format(timestamp,message)
         self.execute_query(query)
 
     def insert_so(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_OUT)
-        query += " VALUES ('{}','{}',0)  RETURNING id;".format(timestamp,message)
+        query += " VALUES ('{}','{}',0);".format(timestamp,message)
         self.execute_query(query)
 
     # def updae_io_sended(self, timestamp, message):
@@ -118,7 +118,7 @@ class MyDatabase:
     # def select_io_unsended(self):
     # def select_so_unsended(self)
 
-    def get_las_insert_rowid(self):
+    def get_last_insert_rowid(self):
         query = "SELECT last_insert_rowid()"
         res = self.execute_query(query)
         return res

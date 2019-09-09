@@ -51,7 +51,8 @@ def main():
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
     dbms.insert_si("esa","mijo")
-    dbms.get_las_insert_rowid()
+    a=dbms.get_last_insert_rowid()
+    print(a)
     dbms.print_all_data(dblite.SERIAL_IN)
     try:
         gpsp.start()
