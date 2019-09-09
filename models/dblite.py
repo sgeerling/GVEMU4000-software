@@ -121,6 +121,7 @@ class MyDatabase:
     def get_last_insert_rowid(self):
         query = "SELECT last_insert_rowid();"
         res = self.execute_query(query)
+        print(res)
         return res
 
     def sample_query(self):
