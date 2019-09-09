@@ -57,7 +57,8 @@ def main():
     list = dbms.select_so_unsended()
     while True:
         time.sleep(1)
-        print(list)
+        print(list[0])
+        print(list[1])
     try:
         gpsp.start()
         gvemu = dev(params)
