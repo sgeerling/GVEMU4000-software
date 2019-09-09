@@ -81,7 +81,7 @@ class MyDatabase:
                 print(e)
             else:
                 for row in res:
-                    insert_id = row[0]
+                    insert_id = row[0] # what if no answer??
                 res.close()
         return insert_id
 
@@ -99,7 +99,6 @@ class MyDatabase:
         print("\n")
 
     def insert_si(self, timestamp, message):
-        insert_id = ""
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
@@ -109,36 +108,30 @@ class MyDatabase:
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
-        self.execute_query(query)
+        return self.execute_query_get_id(query)
 
     def insert_io(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(INET_OUT)
         query += " VALUES ('{}','{}',0);".format(timestamp,message)
-        self.execute_query(query)
+        return self.execute_query_get_id(query)
 
     def insert_so(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_OUT)
         query += " VALUES ('{}','{}',0);".format(timestamp,message)
-        self.execute_query(query)
+        return self.execute_query_get_id(query)
 
-    # def updae_io_sended(self, timestamp, message):
-    #     query = "INSERT INTO {}(tstamp, msg, sent)".format(SERIAL_SO)
-    #     query += " VALUES ('{}','{}',0);".format(timestamp,message)
-    #     self.execute_query(query)
-    #     # Update Data
-    #     query = "UPDATE {} set first_name='XXXX' WHERE id={id}"\
-    #         .format(USERS, id=3)
-    #     self.execute_query(query)
-    #     self.print_all_data(USERS)
+    def updae_io_sended(self, id):
+        # Update Data
+        query = "UPDATE {} set sent=1 WHERE id={}"\
+            .format(INET_OUT, id)
+        self.execute_query(query)
+        #self.print_all_data(USERS)
+
+
     # def updae_so_sended(self):
     # def select_io_unsended(self):
     # def select_so_unsended(self)
 
-    def get_last_insert_rowid(self):
-        query = "SELECT last_insert_rowid();"
-        res = self.execute_query(query)
-        print(res)
-        return res
 
     def sample_query(self):
         # Sample Query
