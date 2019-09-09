@@ -56,9 +56,6 @@ def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
-    while True:
-        print(utils.ping_inet())
-        time.sleep(1)
     try:
         gpsp.start()
         gvemu = dev(params)
