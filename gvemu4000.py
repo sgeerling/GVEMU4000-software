@@ -50,7 +50,8 @@ def main():
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
-    dbms.insert_si("esa","mijo")
+    id_insert = dbms.insert_si("esa","mijo")
+    print (id_insert)
     #dbms.get_last_insert_rowid()
     dbms.print_all_data(dblite.SERIAL_IN)
     try:
