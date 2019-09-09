@@ -65,7 +65,8 @@ class MyDatabase:
         if query == '' : return
         with self.db_engine.connect() as connection:
             try:
-                connection.execute(query)
+                res = connection.execute(query)
+                return res
             except Exception as e:
                 print(e)
 
