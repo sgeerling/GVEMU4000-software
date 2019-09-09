@@ -98,6 +98,20 @@ class MyDatabase:
                 result.close()
         print("\n")
 
+    def execute_query_get_data(self, query=''):
+        if query == '' : return
+        with self.db_engine.connect() as connection:
+            try:
+                res = connection.execute(query)
+            except Exception as e:
+                print(e)
+            else:
+                data = []
+                for row in res:
+                    data += row # what if no answer??
+                res.close()
+                return row
+
     def insert_si(self, timestamp, message):
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
@@ -121,15 +135,23 @@ class MyDatabase:
         return self.execute_query_get_id(query)
 
     def updae_io_sended(self, id):
-        # Update Data
         query = "UPDATE {} set sent=1 WHERE id={}"\
             .format(INET_OUT, id)
         self.execute_query(query)
         #self.print_all_data(USERS)
 
 
-    # def updae_so_sended(self):
-    # def select_io_unsended(self):
+    def updae_so_sended(self, id):
+        query = "UPDATE {} set sent=1 WHERE id={}"\
+            .format(SERIAL_OUT, id)
+        self.execute_query(query)
+
+    def select_io_unsended(self):
+        query = "SELECT * FROM {table} where sent = 0;"\
+            .format(table = INET_OUT)
+        list = self.execute_query_get_data(query)
+
+
     # def select_so_unsended(self)
 
 
@@ -138,7 +160,7 @@ class MyDatabase:
         query = "SELECT first_name, last_name FROM {TBL_USR} WHERE " \
                 "last_name LIKE 'M%';".format(TBL_USR=USERS)
         self.print_all_data(query=query)
-        # Sample Query Joining
+        # Sample Query Joining 
         query = "SELECT u.last_name as last_name, " \
                 "a.email as email, a.address as address " \
                 "FROM {TBL_USR} AS u " \

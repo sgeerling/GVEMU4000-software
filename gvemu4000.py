@@ -50,11 +50,8 @@ def main():
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
-    id_insert = dbms.insert_io("esa","mijo")
-    id_insert = dbms.insert_io("esa","mijo")
-    id_insert = dbms.insert_io("esa","mijo")
-    dbms.updae_io_sended(id_insert)
-    dbms.print_all_data(dblite.INET_OUT)
+    list = dbms.select_io_unsended()
+    print(list)
     try:
         gpsp.start()
         gvemu = dev(params)
