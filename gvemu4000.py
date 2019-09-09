@@ -91,6 +91,7 @@ def main():
                     os.system("poff etrans  > /dev/null 2>&1")
                     time.sleep(2)
                     os.system("pon etrans  > /dev/null 2>&1")
+                    time.sleep(2)
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
         logger.error("Killing thread")
         share.gpsp.running = False
