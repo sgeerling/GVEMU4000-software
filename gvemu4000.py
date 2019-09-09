@@ -50,8 +50,11 @@ def main():
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
-    list = dbms.select_io_unsended()
-    print(list)
+    dbms.insert_so("a","w")
+    dbms.insert_so("a","w")
+    dbms.insert_so("a","w")
+    dbms.insert_so("a","w")
+    list = dbms.select_so_unsended()
     while True:
         time.sleep(1)
         print(list)
