@@ -94,7 +94,7 @@ class MyDatabase:
         with self.db_engine.connect() as connection:
             try:
                 res = connection.execute(query)
-                print(int(res))
+                print((res))
             except Exception as e:
                 print(e)
         #a = self.execute_query(query)
