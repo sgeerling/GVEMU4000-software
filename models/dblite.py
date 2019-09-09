@@ -100,10 +100,10 @@ class MyDatabase:
                 print(e)
             else:
                 for row in res:
-                    insert_id = row
+                    insert_id = row[0]
                 res.close()
         return insert_id
-    
+
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
