@@ -12,6 +12,7 @@ import utils.utils as utils
 from models.queue import Queue
 from datetime import datetime
 import socket
+import os
 import logging
 from models import dblite
 # 79 chars according to PEP 8
