@@ -92,7 +92,7 @@ class MyDatabase:
         self.execute_query(query)
         query = "SELECT last_insert_rowid();"
         a = self.execute_query(query)
-        print (a)
+        print (str(a))
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
