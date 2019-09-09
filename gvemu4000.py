@@ -49,9 +49,9 @@ def main():
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
-    dbms.insert_si("esa","mijo")
-    k = dbms.print_all_data(dblite.SERIAL_IN)
+    k = dbms.insert_si("esa","mijo")
     print(k)
+    dbms.print_all_data(dblite.SERIAL_IN)
     print(type(k))
     try:
         gpsp.start()
