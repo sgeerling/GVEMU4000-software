@@ -51,6 +51,8 @@ def main():
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
     dbms.create_db_tables()
     id_insert = dbms.insert_io("esa","mijo")
+    id_insert = dbms.insert_io("esa","mijo")
+    id_insert = dbms.insert_io("esa","mijo")
     dbms.updae_io_sended(id_insert)
     dbms.print_all_data(dblite.INET_OUT)
     try:
