@@ -87,8 +87,9 @@ class MyDatabase:
         # insert incomming msg from serial 5. Currently we are just
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
-        query += " VALUES ('{}','{}');".format(timestamp,message)
-        self.execute_query(query)
+        query += " VALUES ('{}','{}'); SELECT last_insert_rowid();".format(timestamp,message)
+        a=self.execute_query(query)
+        print (a)
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
