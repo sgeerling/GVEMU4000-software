@@ -4,24 +4,26 @@ import pika
 # for the sleep on the callback
 import time
 import logging
-logger = logging.getLogger(__name__)
 
+###############################################################################
+#                  Begin of Logging block
+###############################################################################
+logger = logging.getLogger(__name__)
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('test.log', mode='a') # Log for file
-
-
-formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
 c_handler.setFormatter(formattc)
 f_handler.setFormatter(formattf)
-
 logger.setLevel(logging.DEBUG)
-
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-
-logger.info('Welcome eTrancer!')
+logger.info('queue module loaded!')
+###############################################################################
+#                  End of Logging block
+###############################################################################
 
 class Queue(object):
 

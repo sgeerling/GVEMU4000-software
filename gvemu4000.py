@@ -26,6 +26,12 @@ params['period_gtudt'] = 2
 server_ip_add = "190.216.145.154"
 server_port = 61000
 
+# TO define:
+#
+# imei path
+# log path
+# sqlite path
+
 ###############################################################################
 #                  Begin of Logging block
 ###############################################################################
@@ -50,6 +56,9 @@ def main():
     utils.get_imei()
     gpsp = gps.GpsPoller()
     dbms = dblite.MyDatabase(dblite.SQLITE, dbname='mydb.sqlite')
+    while True:
+        print(utils.ping_inet())
+        time.sleep(1)
     try:
         gpsp.start()
         gvemu = dev(params)

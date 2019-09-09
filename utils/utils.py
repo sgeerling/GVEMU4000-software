@@ -4,24 +4,36 @@ from threading import Timer,Thread,Event
 import os
 import utils.share as share
 import logging
-logger = logging.getLogger(__name__)
 
+###############################################################################
+#                  Begin of Logging block
+###############################################################################
+logger = logging.getLogger(__name__)
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('test.log', mode='a') # Log for file
-
-
-formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
 c_handler.setFormatter(formattc)
 f_handler.setFormatter(formattf)
-
 logger.setLevel(logging.DEBUG)
-
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
+logger.info('utils module loaded!')
+###############################################################################
+#                  End of Logging block
+###############################################################################
 
-logger.info('Welcome eTrancer!')
+def ping_inet():
+    response = os.system("ping -c 1 190.153.248.100")
+    if response == 0:
+        logger.info("up!")
+        return True
+    else:
+        logger.info("down!")
+        return False
+
 def hrs_to_sec(value):
     return round((value * 60 * 60), 1)
 
@@ -44,7 +56,7 @@ def is_gtdat(data):
         if (header == aux_1):
             return str(aux_0[3])
     return False
-            
+
 class SqlInsertingError(Exception):
     def __init__(self, arg):
         self.args = arg
