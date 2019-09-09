@@ -90,8 +90,7 @@ def main():
                             data = s.recv(1024)
                             if data:
                                 logger.info("recieved from server: %s", str(data))
-                                integer = share.dbms.insert_ii(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
-                                               str(data))
+                                #integer = share.dbms.insert_ii(str((datetime.now().strftime("%Y%m%d%H%M%S"))), str(data))
                                 gvemu.send_to_kam(data)
                         except socket.timeout as e:
                             logger.error("Exception raised:", exc_info=True)
@@ -111,4 +110,4 @@ def main():
 
 if __name__== "__main__":
     main()
-#EOF
+#EOF!
