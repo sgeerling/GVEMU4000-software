@@ -100,7 +100,6 @@ class MyDatabase:
 
     def execute_query_get_data(self, query=''):
         if query == '' : return
-        print (query)
         with self.db_engine.connect() as connection:
             try:
                 res = connection.execute(query)
