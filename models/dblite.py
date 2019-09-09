@@ -109,9 +109,7 @@ class MyDatabase:
             else:
                 data = []
                 for row in res:
-                    print(row)
                     data += [row]# what if no answer??
-                    print(data)
                 res.close()
                 return data
 
@@ -151,19 +149,18 @@ class MyDatabase:
 
     def select_io_unsended(self):
         query = "SELECT * FROM {table} where sent = 0;".format(table = INET_OUT)
-        list = self.execute_query_get_data(query)
-        print (list)
-        return list
+        return self.execute_query_get_data(query)
 
-    # def select_so_unsended(self)
-
+    def select_io_unsended(self):
+        query = "SELECT * FROM {table} where sent = 0;".format(table = SERIAL_OUT)
+        return self.execute_query_get_data(query)
 
     def sample_query(self):
         # Sample Query
         query = "SELECT first_name, last_name FROM {TBL_USR} WHERE " \
                 "last_name LIKE 'M%';".format(TBL_USR=USERS)
         self.print_all_data(query=query)
-        # Sample Query Joining 
+        # Sample Query Joining
         query = "SELECT u.last_name as last_name, " \
                 "a.email as email, a.address as address " \
                 "FROM {TBL_USR} AS u " \
