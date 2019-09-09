@@ -109,9 +109,11 @@ class MyDatabase:
             else:
                 data = []
                 for row in res:
+                    print(row)
                     data += row # what if no answer??
+                    print(data)
                 res.close()
-                return row
+                return data
 
     def insert_si(self, timestamp, message):
         # insert incomming msg from serial 5. Currently we are just
