@@ -89,8 +89,7 @@ class MyDatabase:
         # working with serial 5 on the BBB.
         query = "INSERT INTO {}(tstamp, msg)".format(SERIAL_IN)
         query += " VALUES ('{}','{}');".format(timestamp,message)
-        self.execute_query(query)
-        query = "SELECT last_insert_rowid();"
+        #self.execute_query(query)
         with self.db_engine.connect() as connection:
             try:
                 res = connection.execute(query)
@@ -99,6 +98,13 @@ class MyDatabase:
                 print(e)
         #a = self.execute_query(query)
         #print (str(a))
+        query = "SELECT last_insert_rowid();"
+        with self.db_engine.connect() as connection:
+            try:
+                res = connection.execute(query)
+                print((res))
+            except Exception as e:
+                print(e)
 
     def insert_ii(self, timestamp, message):
         query = "INSERT INTO {}(tstamp, msg)".format(INET_IN)
