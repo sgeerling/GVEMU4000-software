@@ -67,29 +67,33 @@ def main():
         while True:
             if share.to_server:
                 logger.debug("server queue not empty!")
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                # UGLY HARDCODE
-                s.connect((server_ip_add, server_port))
-                s.settimeout(5)
-                while share.to_server:
-                    str_to_server = share.to_server.popleft()
-                    str_to_server +=\
-                                  str((datetime.now().strftime("%Y%m%d%H%M%S")))
-                    str_to_server += ",FFFF$"
-                    logger.info("Transmitting: %s", str_to_server)
-                    try:
-                        s.sendall(str_to_server.encode())
-                        time.sleep(0.1)
-                        data = s.recv(1024)
-                        if data:
-                            logger.info("recieved from server: %s", str(data))
-                            gvemu.send_to_kam(data)
-                    except socket.timeout as e:
-                        logger.error("Exception raised:", exc_info=True)
-                s.close()
-                logger.info("I'm alive")
-                time.sleep(0.8)
-
+                if utils.ping_inet():
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    # UGLY HARDCODE
+                    s.connect((server_ip_add, server_port))
+                    s.settimeout(5)
+                    while share.to_server:
+                        str_to_server = share.to_server.popleft()
+                        str_to_server +=\
+                            str((datetime.now().strftime("%Y%m%d%H%M%S")))
+                        str_to_server += ",FFFF$"
+                        logger.info("Transmitting: %s", str_to_server)
+                        try:
+                            s.sendall(str_to_server.encode())
+                            time.sleep(0.1)
+                            data = s.recv(1024)
+                            if data:
+                                logger.info("recieved from server: %s", str(data))
+                                gvemu.send_to_kam(data)
+                        except socket.timeout as e:
+                            logger.error("Exception raised:", exc_info=True)
+                    s.close()
+                    logger.info("I'm alive")
+                    time.sleep(0.8)
+                else:
+                    os.system("poff etrans  > /dev/null 2>&1")
+                    time.sleep(2)
+                    os.system("pon etrans  > /dev/null 2>&1")
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
         logger.error("Killing thread")
         share.gpsp.running = False
