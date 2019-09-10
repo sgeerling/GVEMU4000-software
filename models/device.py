@@ -81,6 +81,7 @@ class GVDevice(object):
         # Send time
         # Footer
         share.to_server.append(gtfri_str) # try here
+        integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtdat_str)
 
     def gtinf_method(self,test_var = None):
         logger.debug("gtinf into queue")
@@ -126,7 +127,7 @@ class GVDevice(object):
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
-                    share.to_server.append(gtdat_str) # try here
+                    #share.to_server.append(gtdat_str) # try here
                     integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtdat_str)
                 else:
                     logger.debug("Text not recognized")
@@ -152,7 +153,7 @@ class GVDevice(object):
         gtudt_str += str(str(share.gpsd.fix.altitude)+ ",")         #! Altitude
         gtudt_str += str(str(share.gpsd.fix.longitude)+ ",")        #! Longitude
         gtudt_str += str(str(share.gpsd.fix.latitude)+ ",")         #! Latitude
-        gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) # GNSS UTC time
+        gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) # GNSS UTC time #this time should come from GPS?
         gtudt_str += ","                                            #* MCC
         gtudt_str += ","                                            #* MNC
         gtudt_str += ","                                            #* LAC
@@ -181,7 +182,7 @@ class GVDevice(object):
         gtudt_str += ",FFFF$\r\n"                                       #* Footer
         logger.debug(str(gtudt_str))
         self.serialport.write(bytes(gtudt_str,'utf-8'))
-
+        
     def send_to_kam(self,test_var = None):
 
         aux = str(test_var)
