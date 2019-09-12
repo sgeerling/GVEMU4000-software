@@ -68,7 +68,7 @@ def main():
         logger.info("threads started!")
         while True:
             if utils.ping_inet():
-                unsended = share.dbms.select_io_unsended(self)
+                unsended = share.dbms.select_io_unsended()
                 if unsended:
                     for message in unsended:
                         print(unsended[0])
