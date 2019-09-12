@@ -80,7 +80,7 @@ class GVDevice(object):
         # The following params are going to be added when sending the frame
         # Send time
         # Footer
-        integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtfri_str)
+        integer = share.dbms.insert_io(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtfri_str)
 
     def gtinf_method(self,test_var = None):
         logger.debug("gtinf into queue")
@@ -178,16 +178,19 @@ class GVDevice(object):
         gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) #! SEND TIME
         gtudt_str += ",FFFF$\r\n"                                       #* Footer
         logger.debug(str(gtudt_str))
+        curr_id = share.dbms.insert_so(str((datetime.now().strftime("%Y%m%d%H%M%S"))),str(gtudt_str))
+        #try:
         self.serialport.write(bytes(gtudt_str,'utf-8'))
+        share.dbms.updae_so_sended(curr_id)
+
 
     def send_to_kam(self,test_var = None):
-
         aux = str(test_var)
         aux=aux.split(',')
-
         to_kam=aux[3]+","+aux[4]+","+aux[5]+"\r\n"
-        integer = share.dbms.insert_so(str((datetime.now().strftime("%Y%m%d%H%M%S"))), to_kam)
+        curr_id = share.dbms.insert_so(str((datetime.now().strftime("%Y%m%d%H%M%S"))), to_kam)
         self.serialport.write(bytes(str(to_kam),'utf-8'))
+        share.dbms.updae_so_sended(curr_id)
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
 
@@ -197,8 +200,6 @@ class GVDevice(object):
                 # What if str() fails?
         #        print(str(ans))
             # sleep plz????
-
-
     def start(self):
 
         if 'period_gtfri' in self.params.keys():

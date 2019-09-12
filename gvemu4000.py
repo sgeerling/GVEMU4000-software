@@ -66,47 +66,40 @@ def main():
         gvemu = dev(params)
         gvemu.start()
         logger.info("threads started!")
+        # get element
+        # try to send them
+        # if recieved back ack change bd state of the element
         while True:
             if utils.ping_inet():
                 unsended = share.dbms.select_io_unsended()
                 if unsended:
-                    for message in unsended:
-                        print(unsended[0])
-                        print(unsended[0][2])
-                    time.sleep(1)
-                    continue
-                    # get element
-                    # try to send them
-                    # if recieved back ack change bd state of the element
-                    #
-                    print("NEVER REACHES HERE")
+                    # SOCKET UGLY HARDCODED
                     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-                    # UGLY HARDCODE
                     s.connect((server_ip_add, server_port))
                     s.settimeout(5) # Important timeout if your connection is slow =)
-                    while share.to_server:
-                        str_to_server = share.to_server.popleft()
+                    for row in unsended:
+                        curr_id = row[0]
+                        str_to_server = str(row[2])
                         str_to_server +=\
                             str((datetime.now().strftime("%Y%m%d%H%M%S")))
                         str_to_server += ",FFFF$"
-                        logger.info("Transmitting: %s", str_to_server)
-                        id_io = share.dbms.insert_io(str((datetime.now().strftime("%Y%m%d%H%M%S"))),
-                                       str_to_server)
+                        logger.info("Trying to send: %s", str_to_server)
                         try:
                             s.sendall(str_to_server.encode())
-                            share.dbms.updae_io_sended(id_io)
                             time.sleep(0.1)
                             data = s.recv(1024)
                             if data:
-                                logger.info("recieved from server: %s", str(data))
-                                integer = share.dbms.insert_ii(str((datetime.now().strftime("%Y%m%d%H%M%S"))), str(data.decode('utf8', 'strict')))
+                                logger.info("Recieved from server: %s", str(data))
+                                logger.info("Updating flag for message local id: %s", str(curr_id))
+                                share.dbms.updae_io_sended(curr_id)
                                 gvemu.send_to_kam(data)
+                                logger.info("Data sended to Kamaleon (tty5)")
+                            else:
+                                logger.info("No ACK recieved in time. Msg not updated in DB ")
                         except socket.timeout as e:
                             logger.error("Exception raised:", exc_info=True)
+                    time.sleep(1)
                     s.close()
-                    logger.info("I'm alive")
-                    time.sleep(0.8)
 
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
         logger.error("Killing thread")
