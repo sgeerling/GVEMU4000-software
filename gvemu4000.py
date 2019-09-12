@@ -76,7 +76,7 @@ def main():
                     # SOCKET UGLY HARDCODED
                     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                     s.connect((server_ip_add, server_port))
-                    s.settimeout(5) # Important timeout if your connection is slow =)
+                    s.settimeout(9) # Important timeout if your connection is slow =)
                     for row in unsended:
                         curr_id = row[0]
                         str_to_server = str(row[2])
