@@ -81,7 +81,7 @@ class GVDevice(object):
         # Send time
         # Footer
         share.to_server.append(gtfri_str) # try here
-        integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtdat_str)
+        integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtfri_str)
 
     def gtinf_method(self,test_var = None):
         logger.debug("gtinf into queue")
@@ -182,7 +182,7 @@ class GVDevice(object):
         gtudt_str += ",FFFF$\r\n"                                       #* Footer
         logger.debug(str(gtudt_str))
         self.serialport.write(bytes(gtudt_str,'utf-8'))
-        
+
     def send_to_kam(self,test_var = None):
 
         aux = str(test_var)
