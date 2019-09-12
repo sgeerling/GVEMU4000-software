@@ -70,14 +70,15 @@ def main():
         # try to send them
         # if recieved back ack change bd state of the element
         while True:
-            logger.info("----------------------------------------------------------New inet agent loop iteration!")
+            logger.debug("New inet agent loop iteration!")
             if utils.ping_inet():
                 unsended = share.dbms.select_io_unsended()
                 if unsended:
+                    logger.debug("Unsended msgs found in local DB")
                     # SOCKET UGLY HARDCODED
                     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                     s.connect((server_ip_add, server_port))
-                    s.settimeout(9) # Important timeout if your connection is slow =)
+                    s.settimeout(5) # Important timeout if your connection is slow =)
                     for row in unsended:
                         curr_id = row[0]
                         str_to_server = str(row[2])
