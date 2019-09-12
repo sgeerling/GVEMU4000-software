@@ -2,7 +2,6 @@
 """
 @author: gopimn
 """
-#BOF
 import serial
 import time
 from models.device import GVDevice as dev
@@ -68,13 +67,21 @@ def main():
         gvemu.start()
         logger.info("threads started!")
         while True:
-            if share.to_server:
-                logger.debug("server queue not empty!")
-                if utils.ping_inet():
+            if utils.ping_inet():
+                unsended = share.dbms.select_io_unsended(self)
+                if unsended:
+                    for message in unsended:
+                        print(unsended[0])
+                        continue
+                    # get element
+                    # try to send them
+                    # if recieved back ack change bd state of the element
+                    #
                     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
                     # UGLY HARDCODE
                     s.connect((server_ip_add, server_port))
-                    s.settimeout(5)
+                    s.settimeout(5) # Important timeout if your connection is slow =)
                     while share.to_server:
                         str_to_server = share.to_server.popleft()
                         str_to_server +=\
@@ -97,11 +104,6 @@ def main():
                     s.close()
                     logger.info("I'm alive")
                     time.sleep(0.8)
-                else:
-                    os.system("poff etrans  > /dev/null 2>&1")
-                    time.sleep(2)
-                    os.system("pon etrans  > /dev/null 2>&1")
-                    time.sleep(10)
 
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
         logger.error("Killing thread")

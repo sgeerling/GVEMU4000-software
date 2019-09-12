@@ -127,15 +127,15 @@ class GVDevice(object):
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
+                    print(gtdat_str)
                     #share.to_server.append(gtdat_str) # try here
                     integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtdat_str)
                 else:
                     logger.debug("Text not recognized")
                     logger.debug(data)
-            # sleep plz????
 
     def print_gtudt(self,test_var = None):
-        gtudt_str = "" 
+        gtudt_str = ""
         logger.debug("SENDING GTDUT")                             # * means fixed, ! means variable
         gtudt_str += "+RESP:GTUDT,"                                 #* header
         gtudt_str += ","                                            #* Protocol Ver.
