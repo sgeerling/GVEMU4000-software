@@ -80,7 +80,6 @@ class GVDevice(object):
         # The following params are going to be added when sending the frame
         # Send time
         # Footer
-        share.to_server.append(gtfri_str) # try here
         integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtfri_str)
 
     def gtinf_method(self,test_var = None):
@@ -127,8 +126,6 @@ class GVDevice(object):
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
-                    print(gtdat_str)
-                    #share.to_server.append(gtdat_str) # try here
                     integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtdat_str)
                 else:
                     logger.debug("Text not recognized")

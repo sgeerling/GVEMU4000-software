@@ -77,6 +77,7 @@ def main():
                     # try to send them
                     # if recieved back ack change bd state of the element
                     #
+                    print("NEVER REACHES HERE")
                     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
                     # UGLY HARDCODE
