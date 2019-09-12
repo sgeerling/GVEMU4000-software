@@ -72,7 +72,7 @@ def main():
                 if unsended:
                     for message in unsended:
                         print(unsended[0])
-                        continue
+                    continue
                     # get element
                     # try to send them
                     # if recieved back ack change bd state of the element
