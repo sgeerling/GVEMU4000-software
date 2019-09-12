@@ -98,7 +98,7 @@ class GVDevice(object):
                 # What if str() fails?
                 data = utils.is_gtdat(ans)
                 if data != False:
-                    logger.debug("issuing gtfri")
+                    logger.debug("issuing gtdat")
                     logger.debug(data)
                     gtdat_str = ""
                     gtdat_str += "+RESP:GTDAT,"# Header
