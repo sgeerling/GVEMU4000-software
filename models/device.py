@@ -46,7 +46,6 @@ class GVDevice(object):
                                  threading.Thread(target=self.kamaleon_listener,
                                                   args=(1,))
     def gtfri_method(self,test_var = None):
-        logger.debug("issuing gtfri")
         gtfri_str = ""
         gtfri_str += "+RESP:GTFRI,"# Header
         gtfri_str += "270601," # Protocol ver
@@ -81,9 +80,10 @@ class GVDevice(object):
         # Send time
         # Footer
         integer = share.dbms.insert_io(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtfri_str)
+        logger.debug("New gtfri sg in local DB")
 
     def gtinf_method(self,test_var = None):
-        logger.debug("gtinf into queue")
+        logger.debug("gtinf!")
 
     def kamaleon_listener(self,test_var = None):
 
