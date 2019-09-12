@@ -98,9 +98,8 @@ def main():
                                 logger.info("No ACK recieved in time. Msg not updated in DB ")
                         except socket.timeout as e:
                             logger.error("Exception raised:", exc_info=True)
-                    time.sleep(1)
                     s.close()
-
+            time.sleep(1)
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
         logger.error("Killing thread")
         share.gpsp.running = False
