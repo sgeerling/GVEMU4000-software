@@ -72,6 +72,8 @@ def main():
                 if unsended:
                     for message in unsended:
                         print(unsended[0])
+                        print(unsended[0][2])
+                    time.sleep(1)
                     continue
                     # get element
                     # try to send them
