@@ -70,6 +70,7 @@ def main():
         # try to send them
         # if recieved back ack change bd state of the element
         while True:
+            logger.INFO("----------------------------------------------------------New inet agent loop iteration!")
             if utils.ping_inet():
                 unsended = share.dbms.select_io_unsended()
                 if unsended:
