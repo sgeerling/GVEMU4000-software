@@ -80,14 +80,14 @@ class GVDevice(object):
         # Send time
         # Footer
         integer = share.dbms.insert_io(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtfri_str)
-        logger.debug("New gtfri sg in local DB")
+        logger.debug("New gtfri msg in local DB")
 
     def gtinf_method(self,test_var = None):
         logger.debug("gtinf!")
 
     def kamaleon_listener(self,test_var = None):
 
-        logger.debug("Starting listener")
+        logger.debug("Starting serial listener")
 
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
@@ -132,8 +132,7 @@ class GVDevice(object):
                     logger.debug(data)
 
     def print_gtudt(self,test_var = None):
-        gtudt_str = ""
-        logger.debug("SENDING GTDUT")                             # * means fixed, ! means variable
+        gtudt_str = ""                                              # * means fixed, ! means variable
         gtudt_str += "+RESP:GTUDT,"                                 #* header
         gtudt_str += ","                                            #* Protocol Ver.
         gtudt_str += ","                                            #* FW Version
@@ -176,8 +175,9 @@ class GVDevice(object):
         gtudt_str += ","                                            #* reserved
         gtudt_str += ","                                            #* reserved
         gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) #! SEND TIME
-        gtudt_str += ",FFFF$\r\n"                                       #* Footer
-        logger.debug(str(gtudt_str))
+        gtudt_str += ",FFFF$\r\n"                                   #* Footer
+        logger.info("Sending gtudt to serial")
+        logger.info(str(gtudt_str))
         curr_id = share.dbms.insert_so(str((datetime.now().strftime("%Y%m%d%H%M%S"))),str(gtudt_str))
         #try:
         self.serialport.write(bytes(gtudt_str,'utf-8'))

@@ -17,7 +17,7 @@ f_handler.setFormatter(formattf)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-logger.info('Welcome eTrancer!')
+logger.info('sqlite3 module loaded!')
 ###############################################################################
 #                  End of Logging block
 ###############################################################################
@@ -44,7 +44,7 @@ class MyDatabase:
         if dbtype in self.DB_ENGINE.keys():
             engine_url = self.DB_ENGINE[dbtype].format(DB=dbname)
             self.db_engine = create_engine(engine_url)
-            logger.info("DB engine connected OK:")
+            logger.info("DB engine connected OK =)")
             logger.info(self.db_engine)
         else:
             logger.error("DBType is not found in DB_ENGINE")
