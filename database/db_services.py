@@ -30,7 +30,7 @@ logger.addHandler(c_handler)
 logger.addHandler(f_handler)
 
 logger.info('Welcome eTrancer!')
-    
+
 """
 Methods to load, save and process data in the database.
 """

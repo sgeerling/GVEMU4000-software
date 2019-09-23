@@ -7,28 +7,29 @@ import utils.utils as utils
 import serial
 import threading
 import logging
-logger = logging.getLogger(__name__)
 
+###############################################################################
+#                  Begin of Logging block
+###############################################################################
+logger = logging.getLogger(__name__)
 c_handler = logging.StreamHandler() # Log for display
 f_handler = logging.FileHandler('test.log', mode='a') # Log for file
-
-
-formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s', datefmt='%d%m%y-%H:%M:%S')
-
+formattc = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
+formattf = logging.Formatter('[%(asctime)s](%(levelname)s %(name)s) eBot: %(message)s',
+                             datefmt='%d%m%y-%H:%M:%S')
 c_handler.setFormatter(formattc)
 f_handler.setFormatter(formattf)
-
 logger.setLevel(logging.DEBUG)
-
 logger.addHandler(c_handler)
 logger.addHandler(f_handler)
-
-logger.info('Welcome eTrancer!')
+logger.info('device module loaded!')
+###############################################################################
+#                  End of Logging block
+###############################################################################
 
 class GVDevice(object):
     def __init__(self,params):
-
         self.params = params
 
         # Exception for not having
@@ -45,7 +46,6 @@ class GVDevice(object):
                                  threading.Thread(target=self.kamaleon_listener,
                                                   args=(1,))
     def gtfri_method(self,test_var = None):
-        logger.debug("issuing gtfri")
         gtfri_str = ""
         gtfri_str += "+RESP:GTFRI,"# Header
         gtfri_str += "270601," # Protocol ver
@@ -79,14 +79,15 @@ class GVDevice(object):
         # The following params are going to be added when sending the frame
         # Send time
         # Footer
-        share.to_server.append(gtfri_str) # try here
+        integer = share.dbms.insert_io(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtfri_str)
+        logger.debug("New gtfri msg in local DB")
 
     def gtinf_method(self,test_var = None):
-        logger.debug("gtinf into queue")
+        logger.debug("gtinf!")
 
     def kamaleon_listener(self,test_var = None):
 
-        logger.debug("Starting listener")
+        logger.debug("Starting serial listener")
 
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
@@ -96,7 +97,7 @@ class GVDevice(object):
                 # What if str() fails?
                 data = utils.is_gtdat(ans)
                 if data != False:
-                    logger.debug("issuing gtfri")
+                    logger.debug("issuing gtdat")
                     logger.debug(data)
                     gtdat_str = ""
                     gtdat_str += "+RESP:GTDAT,"# Header
@@ -125,15 +126,13 @@ class GVDevice(object):
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
                     gtdat_str += ","# Res
-                    share.to_server.append(gtdat_str) # try here
+                    integer = share.dbms.insert_si(str((datetime.now().strftime("%Y%m%d%H%M%S"))),gtdat_str)
                 else:
                     logger.debug("Text not recognized")
                     logger.debug(data)
-            # sleep plz????
 
     def print_gtudt(self,test_var = None):
-        gtudt_str = "" 
-        logger.debug("SENDING GTDUT")                             # * means fixed, ! means variable
+        gtudt_str = ""                                              # * means fixed, ! means variable
         gtudt_str += "+RESP:GTUDT,"                                 #* header
         gtudt_str += ","                                            #* Protocol Ver.
         gtudt_str += ","                                            #* FW Version
@@ -150,7 +149,7 @@ class GVDevice(object):
         gtudt_str += str(str(share.gpsd.fix.altitude)+ ",")         #! Altitude
         gtudt_str += str(str(share.gpsd.fix.longitude)+ ",")        #! Longitude
         gtudt_str += str(str(share.gpsd.fix.latitude)+ ",")         #! Latitude
-        gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) # GNSS UTC time
+        gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) # GNSS UTC time #this time should come from GPS?
         gtudt_str += ","                                            #* MCC
         gtudt_str += ","                                            #* MNC
         gtudt_str += ","                                            #* LAC
@@ -176,17 +175,22 @@ class GVDevice(object):
         gtudt_str += ","                                            #* reserved
         gtudt_str += ","                                            #* reserved
         gtudt_str += str((datetime.now().strftime("%Y%m%d%H%M%S"))) #! SEND TIME
-        gtudt_str += ",FFFF$\r\n"                                       #* Footer
-        logger.debug(str(gtudt_str))
+        gtudt_str += ",FFFF$\r\n"                                   #* Footer
+        logger.info("Sending gtudt to serial")
+        logger.info(str(gtudt_str))
+        curr_id = share.dbms.insert_so(str((datetime.now().strftime("%Y%m%d%H%M%S"))),str(gtudt_str))
+        #try:
         self.serialport.write(bytes(gtudt_str,'utf-8'))
+        share.dbms.updae_so_sended(curr_id)
+
 
     def send_to_kam(self,test_var = None):
-
         aux = str(test_var)
         aux=aux.split(',')
-
         to_kam=aux[3]+","+aux[4]+","+aux[5]+"\r\n"
-        self.serialport.write(bytes(str(to_kam)+"\r\n",'utf-8'))
+        curr_id = share.dbms.insert_so(str((datetime.now().strftime("%Y%m%d%H%M%S"))), to_kam)
+        self.serialport.write(bytes(str(to_kam),'utf-8'))
+        share.dbms.updae_so_sended(curr_id)
         # - [ ] Check if the port is open
         # - [ ] Check if the port has available data before calling readline
 
@@ -196,9 +200,6 @@ class GVDevice(object):
                 # What if str() fails?
         #        print(str(ans))
             # sleep plz????
-
-
-        
     def start(self):
 
         if 'period_gtfri' in self.params.keys():
